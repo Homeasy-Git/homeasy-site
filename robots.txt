@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://homeasy.co.uk/sitemap.xml
