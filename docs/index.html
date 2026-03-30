@@ -15,378 +15,220 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-
     :root {
-      --navy:       #0B2545;
-      --navy-dark:  #071A33;
-      --navy-mid:   #1E3A5F;
-      --teal:       #0EA5B0;
-      --teal-light: #CFFAFE;
-      --green:      #059669;
-      --green-light:#D1FAE5;
-      --amber:      #D97706;
-      --amber-light:#FEF3C7;
-      --white:      #FFFFFF;
-      --off-white:  #F8FAFC;
-      --bg:         #F1F5F9;
-      --border:     #E2E8F0;
-      --text:       #0F172A;
-      --text-mid:   #334155;
-      --text-light: #64748B;
-      --text-faint: #94A3B8;
-      --shadow:     0 4px 6px -1px rgba(0,0,0,.08),0 2px 4px -2px rgba(0,0,0,.05);
-      --shadow-lg:  0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -4px rgba(0,0,0,.06);
-      --shadow-xl:  0 20px 25px -5px rgba(0,0,0,.1),0 8px 10px -6px rgba(0,0,0,.06);
-      --r:  12px;
-      --rs: 8px;
-      --rl: 20px;
+      --navy:#0B2545;--navy-dark:#071A33;--navy-mid:#1E3A5F;--teal:#0EA5B0;--teal-light:#CFFAFE;
+      --green:#059669;--green-light:#D1FAE5;--amber:#D97706;--amber-light:#FEF3C7;
+      --white:#FFFFFF;--off-white:#F8FAFC;--bg:#F1F5F9;--border:#E2E8F0;
+      --text:#0F172A;--text-mid:#334155;--text-light:#64748B;--text-faint:#94A3B8;
+      --shadow:0 4px 6px -1px rgba(0,0,0,.08),0 2px 4px -2px rgba(0,0,0,.05);
+      --shadow-lg:0 10px 15px -3px rgba(0,0,0,.1),0 4px 6px -4px rgba(0,0,0,.06);
+      --shadow-xl:0 20px 25px -5px rgba(0,0,0,.1),0 8px 10px -6px rgba(0,0,0,.06);
+      --r:12px;--rs:8px;--rl:20px;
     }
-
-    body {
-      font-family: 'Inter', -apple-system, sans-serif;
-      color: var(--text);
-      background: var(--white);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
+    body { font-family:'Inter',-apple-system,sans-serif;color:var(--text);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased; }
+    a { text-decoration:none;color:inherit; }
+    img { max-width:100%; }
+    .container { max-width:1200px;margin:0 auto;padding:0 24px; }
+    .container-sm { max-width:860px;margin:0 auto;padding:0 24px; }
+    h1 { font-size:clamp(2.4rem,5vw,4.25rem);font-weight:800;line-height:1.1;letter-spacing:-.03em; }
+    h2 { font-size:clamp(1.75rem,3vw,2.625rem);font-weight:700;line-height:1.2;letter-spacing:-.02em; }
+    h3 { font-size:clamp(1.2rem,2vw,1.625rem);font-weight:600;line-height:1.3; }
+    h4 { font-size:1.0625rem;font-weight:600;line-height:1.4; }
+    p { line-height:1.75; }
+    .label { display:inline-block;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border-radius:100px;margin-bottom:14px; }
+    .label--teal { background:var(--teal-light);color:#0E7490; }
+    .label--green { background:var(--green-light);color:#065F46; }
+    .label--amber { background:var(--amber-light);color:#92400E; }
+    .label--navy { background:rgba(11,37,69,.1);color:var(--navy); }
+    .label--white { background:rgba(255,255,255,.15);color:#fff; }
+    .btn { display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:var(--rs);font-size:.9375rem;font-weight:600;cursor:pointer;transition:all .2s;border:none;white-space:nowrap; }
+    .btn--primary { background:var(--teal);color:#fff; }
+    .btn--primary:hover { background:#0891A0;transform:translateY(-1px);box-shadow:var(--shadow-lg); }
+    .btn--navy { background:var(--navy);color:#fff; }
+    .btn--navy:hover { background:var(--navy-dark);transform:translateY(-1px);box-shadow:var(--shadow-lg); }
+    .btn--ghost { background:rgba(255,255,255,.1);color:#fff;border:1.5px solid rgba(255,255,255,.35); }
+    .btn--ghost:hover { background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.7); }
+    .btn--outline { background:transparent;color:var(--navy);border:1.5px solid var(--border); }
+    .btn--outline:hover { border-color:var(--navy);background:var(--off-white); }
+    .btn--lg { padding:16px 32px;font-size:1rem;border-radius:var(--r); }
+    .nav { position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(7,26,51,.96);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.07); }
+    .nav-inner { max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:66px; }
+    .nav-logo { font-size:1.4rem;font-weight:800;letter-spacing:-.03em;color:#fff;display:flex;align-items:center;gap:9px; }
+    .nav-logo-icon { width:30px;height:30px;background:var(--teal);border-radius:8px;display:flex;align-items:center;justify-content:center; }
+    .nav-logo span { color:var(--teal); }
+    .nav-links { display:flex;align-items:center;gap:28px;list-style:none; }
+    .nav-links a { color:rgba(255,255,255,.7);font-size:.9rem;font-weight:500;transition:color .15s; }
+    .nav-links a:hover { color:#fff; }
+    .nav-actions { display:flex;align-items:center;gap:10px; }
+    .hamburger { display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px; }
+    .hamburger span { display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:all .3s; }
+    .mobile-menu { display:none;position:fixed;top:66px;left:0;right:0;z-index:99;background:var(--navy-dark);padding:20px 24px;border-bottom:1px solid rgba(255,255,255,.1); }
+    .mobile-menu.open { display:block; }
+    .mobile-menu a { display:block;color:rgba(255,255,255,.75);font-size:.95rem;font-weight:500;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.07); }
+    .mobile-menu a:last-of-type { border-bottom:none; }
+    .mobile-menu .btn { display:block;text-align:center;margin-top:16px; }
+    .hero { background:linear-gradient(135deg,#071A33 0%,#0B2545 50%,#1A3A5C 100%);padding:152px 0 96px;position:relative;overflow:hidden; }
+    .hero::before { content:'';position:absolute;top:-40%;right:-15%;width:700px;height:700px;background:radial-gradient(circle,rgba(14,165,176,.14) 0%,transparent 65%);pointer-events:none; }
+    .hero::after { content:'';position:absolute;bottom:-30%;left:-10%;width:500px;height:500px;background:radial-gradient(circle,rgba(5,150,105,.09) 0%,transparent 65%);pointer-events:none; }
+    .hero-inner { position:relative;z-index:1; }
+    .hero-eyebrow { display:flex;align-items:center;gap:12px;margin-bottom:22px; }
+    .hero-eyebrow-line { width:28px;height:2px;background:var(--teal); }
+    .hero-eyebrow-text { font-size:.8125rem;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.1em; }
+    .hero h1 { color:#fff;margin-bottom:22px;max-width:760px; }
+    .hero h1 .accent { color:var(--teal); }
+    .hero-sub { font-size:clamp(.95rem,1.5vw,1.15rem);color:rgba(255,255,255,.68);max-width:560px;margin-bottom:36px; }
+    .hero-ctas { display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:60px; }
+    .hero-stats { display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.1);border-radius:var(--r);overflow:hidden;max-width:760px; }
+    .hero-stat { background:rgba(255,255,255,.05);padding:18px 22px;backdrop-filter:blur(6px); }
+    .hero-stat-val { font-size:1.75rem;font-weight:800;color:#fff;line-height:1;margin-bottom:3px; }
+    .hero-stat-val .u { font-size:.9375rem;color:var(--teal); }
+    .hero-stat-lbl { font-size:.75rem;color:rgba(255,255,255,.48); }
+    .tech-strip { padding:44px 0;background:var(--white);border-bottom:1px solid var(--border); }
+    .tech-strip-label { text-align:center;font-size:.725rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--text-faint);margin-bottom:24px; }
+    .tech-logos { display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:12px; }
+    .tech-chip { display:flex;align-items:center;gap:7px;padding:8px 16px;border:1px solid var(--border);border-radius:var(--rs);background:var(--off-white);font-size:.8125rem;font-weight:600;color:var(--text-mid); }
+    .tech-chip-icon { font-size:1.1rem; }
+    .comparison { padding:96px 0;background:var(--off-white); }
+    .section-header { text-align:center;margin-bottom:52px; }
+    .section-header p { color:var(--text-light);font-size:1.0625rem;max-width:560px;margin:14px auto 0; }
+    .cmp-grid { display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:860px;margin:0 auto; }
+    .cmp-card { border-radius:var(--rl);padding:36px; }
+    .cmp-card--bad { background:var(--white);border:2px solid var(--border); }
+    .cmp-card--good { background:var(--navy); }
+    .cmp-tag { font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:18px; }
+    .cmp-card--bad .cmp-tag { color:var(--text-faint); }
+    .cmp-card--good .cmp-tag { color:var(--teal); }
+    .cmp-card h3 { margin-bottom:22px; }
+    .cmp-card--good h3 { color:#fff; }
+    .cmp-row { display:flex;align-items:center;gap:11px;padding:11px 0;border-bottom:1px solid var(--border);font-size:.9rem; }
+    .cmp-card--good .cmp-row { border-color:rgba(255,255,255,.1);color:rgba(255,255,255,.8); }
+    .cmp-row:last-child { border-bottom:none; }
+    .cmp-ic { width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;flex-shrink:0; }
+    .cmp-ic--bad { background:#FEE2E2;color:#DC2626;font-weight:700; }
+    .cmp-ic--good { background:var(--green-light);color:var(--green);font-weight:700; }
+    .cmp-row span { flex:1; }
+    .cmp-val { font-weight:700;font-size:.825rem; }
+    .cmp-card--bad .cmp-val { color:var(--text-mid); }
+    .cmp-card--good .cmp-val { color:var(--teal); }
+    .how { padding:96px 0;background:var(--white); }
+    .steps { display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:4px; }
+    .step { padding:30px;border:1px solid var(--border);border-radius:var(--r);transition:box-shadow .3s,transform .3s; }
+    .step:hover { box-shadow:var(--shadow-xl);transform:translateY(-4px); }
+    .step-num { width:44px;height:44px;border-radius:11px;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.125rem;font-weight:800;margin-bottom:18px; }
+    .step h4 { margin-bottom:10px; }
+    .step p { color:var(--text-light);font-size:.9rem; }
+    .audience { padding:96px 0; }
+    .audience--alt { background:var(--off-white); }
+    .aud-grid { display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center; }
+    .aud-grid--rev > :first-child { order:2; }
+    .aud-grid--rev > :last-child { order:1; }
+    .aud-content h2 { margin-bottom:14px; }
+    .aud-intro { color:var(--text-light);font-size:1rem;margin-bottom:28px;line-height:1.75; }
+    .benefits { list-style:none;display:flex;flex-direction:column;gap:14px;margin-bottom:28px; }
+    .benefit { display:flex;gap:14px;align-items:flex-start; }
+    .benefit-icon { width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0;margin-top:2px; }
+    .bi--teal { background:var(--teal-light); }
+    .bi--green { background:var(--green-light); }
+    .bi--amber { background:var(--amber-light); }
+    .bi--navy { background:rgba(11,37,69,.08); }
+    .benefit h5 { font-size:.9rem;font-weight:600;margin-bottom:2px; }
+    .benefit p { font-size:.8375rem;color:var(--text-light); }
+    .aud-panel { background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);border-radius:var(--rl);padding:36px;min-height:380px;display:flex;flex-direction:column;justify-content:center;position:relative;overflow:hidden; }
+    .aud-panel::before { content:'';position:absolute;top:-40px;right:-40px;width:180px;height:180px;background:radial-gradient(circle,rgba(14,165,176,.22) 0%,transparent 65%); }
+    .panel-note { font-size:.65rem;color:rgba(255,255,255,.3);text-align:right;margin-top:10px;font-style:italic; }
+    .panel-card { background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.11);border-radius:var(--r);padding:18px;margin-bottom:14px;position:relative;z-index:1; }
+    .panel-card:last-of-type { margin-bottom:0; }
+    .panel-card-hd { display:flex;align-items:center;gap:10px;margin-bottom:6px; }
+    .pdot { width:9px;height:9px;border-radius:50%;flex-shrink:0; }
+    .pdot--green { background:#34D399; }
+    .pdot--teal { background:var(--teal); }
+    .pdot--amber { background:#FBBF24; }
+    .pdot--blue { background:#60A5FA; }
+    .pdot--red { background:#F87171; }
+    .panel-card-title { color:rgba(255,255,255,.85);font-size:.825rem;font-weight:600; }
+    .panel-card-val { color:#fff;font-size:1.5rem;font-weight:800;line-height:1;margin-bottom:3px; }
+    .panel-card-sub { color:rgba(255,255,255,.45);font-size:.7rem; }
+    .panel-progress { height:4px;background:rgba(255,255,255,.1);border-radius:2px;margin-top:10px;overflow:hidden; }
+    .panel-bar { height:100%;border-radius:2px;background:linear-gradient(90deg,var(--teal),#34D399); }
+    .panel-badge { display:inline-flex;align-items:center;gap:5px;background:rgba(52,211,153,.2);border:1px solid rgba(52,211,153,.3);border-radius:100px;padding:3px 10px;font-size:.7rem;font-weight:600;color:#34D399;margin-top:7px; }
+    .panel-tag-row { display:flex;flex-wrap:wrap;gap:6px;margin-top:8px; }
+    .panel-tag { background:rgba(255,255,255,.1);border-radius:100px;padding:3px 10px;font-size:.7rem;font-weight:500;color:rgba(255,255,255,.7); }
+    .investors { background:var(--navy);padding:96px 0; }
+    .investors .section-header h2 { color:#fff; }
+    .investors .section-header p { color:rgba(255,255,255,.55); }
+    .inv-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:52px; }
+    .inv-card { background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:var(--r);padding:28px;transition:background .3s,transform .3s; }
+    .inv-card:hover { background:rgba(255,255,255,.1);transform:translateY(-4px); }
+    .inv-icon { font-size:1.75rem;margin-bottom:14px; }
+    .inv-card h4 { color:#fff;margin-bottom:8px; }
+    .inv-card p { color:rgba(255,255,255,.55);font-size:.9rem;line-height:1.65; }
+    .inv-highlight { color:var(--teal)!important;font-weight:600; }
+    .rev-box { background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:var(--rl);padding:44px;margin-top:52px; }
+    .rev-box h3 { color:#fff;margin-bottom:8px; }
+    .rev-box > p { color:rgba(255,255,255,.55);font-size:.95rem;margin-bottom:36px; }
+    .rev-streams { display:grid;grid-template-columns:repeat(3,1fr);gap:28px; }
+    .rev-stream h5 { color:var(--teal);font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px; }
+    .rev-stream p { color:rgba(255,255,255,.65);font-size:.875rem;line-height:1.65; }
+    .timeline-row { display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.08);border-radius:var(--r);overflow:hidden;margin-top:36px; }
+    .tl-phase { background:var(--navy-dark);padding:18px 20px; }
+    .tl-phase-lbl { font-size:.7rem;font-weight:700;color:var(--teal);text-transform:uppercase;letter-spacing:.08em;margin-bottom:5px; }
+    .tl-phase-title { font-size:.8375rem;font-weight:600;color:#fff;margin-bottom:3px; }
+    .tl-phase-sub { font-size:.7rem;color:rgba(255,255,255,.38); }
+    .team { padding:96px 0;background:var(--off-white); }
+    .roles-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:44px; }
+    .role-card { background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:28px;transition:box-shadow .3s,transform .3s; }
+    .role-card:hover { box-shadow:var(--shadow-xl);transform:translateY(-4px); }
+    .role-card h4 { margin-bottom:10px; }
+    .role-card p { color:var(--text-light);font-size:.875rem;margin-bottom:18px;line-height:1.7; }
+    .skills { display:flex;flex-wrap:wrap;gap:7px; }
+    .skill { background:var(--bg);border:1px solid var(--border);border-radius:100px;padding:3px 11px;font-size:.7375rem;font-weight:500;color:var(--text-mid); }
+    .team-box { background:var(--white);border:1px solid var(--border);border-radius:var(--rl);padding:44px;margin-top:44px; }
+    .team-box h3 { margin-bottom:8px; }
+    .team-box > p { color:var(--text-light);font-size:.9rem;line-height:1.75;margin-bottom:20px; }
+    .team-badges { display:flex;flex-wrap:wrap;gap:8px;margin-top:14px; }
+    .tbadge { background:var(--bg);border:1px solid var(--border);border-radius:100px;padding:4px 12px;font-size:.7375rem;font-weight:500;color:var(--text-mid); }
+    .cta-banner { background:linear-gradient(135deg,var(--navy) 0%,#1A3A5C 100%);padding:80px 0;text-align:center; }
+    .cta-banner h2 { color:#fff;margin-bottom:14px; }
+    .cta-banner p { color:rgba(255,255,255,.65);font-size:1.0625rem;max-width:480px;margin:0 auto 36px; }
+    .cta-form { display:flex;gap:10px;max-width:420px;margin:0 auto; }
+    .cta-form input { flex:1;padding:13px 18px;border-radius:var(--rs);border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.1);color:#fff;font-family:inherit;font-size:.9375rem;outline:none;transition:border-color .2s; }
+    .cta-form input::placeholder { color:rgba(255,255,255,.38); }
+    .cta-form input:focus { border-color:var(--teal); }
+    .cta-note { font-size:.8rem;color:rgba(255,255,255,.38);margin-top:14px; }
+    footer { background:var(--navy-dark);padding:56px 0 28px; }
+    .footer-grid { display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:44px;margin-bottom:44px; }
+    .footer-brand p { font-size:.9rem;color:rgba(255,255,255,.5);margin-top:12px;line-height:1.75;max-width:260px; }
+    .footer-col h5 { color:#fff;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:14px; }
+    .footer-col ul { list-style:none;display:flex;flex-direction:column;gap:9px; }
+    .footer-col ul li a { color:rgba(255,255,255,.5);font-size:.9rem;transition:color .15s; }
+    .footer-col ul li a:hover { color:#fff; }
+    .footer-bottom { border-top:1px solid rgba(255,255,255,.08);padding-top:28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px; }
+    .footer-bottom p { font-size:.825rem;color:rgba(255,255,255,.38); }
+    .footer-legal { display:flex;gap:20px; }
+    .footer-legal a { font-size:.825rem;color:rgba(255,255,255,.35);transition:color .15s; }
+    .footer-legal a:hover { color:rgba(255,255,255,.7); }
+    .footer-disclaimer { font-size:.75rem;color:rgba(255,255,255,.28);margin-top:18px;max-width:700px;line-height:1.6; }
+    @media (max-width:1024px) { .inv-grid { grid-template-columns:repeat(2,1fr); } .rev-streams { grid-template-columns:repeat(2,1fr); } }
+    @media (max-width:768px) {
+      .nav-links,.nav-actions .btn--ghost { display:none; }
+      .hamburger { display:flex; }
+      .hero { padding:120px 0 72px; }
+      .hero-stats { grid-template-columns:repeat(2,1fr); }
+      .cmp-grid { grid-template-columns:1fr; }
+      .steps { grid-template-columns:1fr; }
+      .aud-grid { grid-template-columns:1fr;gap:32px; }
+      .aud-grid--rev > :first-child { order:1; }
+      .aud-grid--rev > :last-child { order:2; }
+      .aud-panel { min-height:auto; }
+      .inv-grid { grid-template-columns:1fr; }
+      .rev-streams { grid-template-columns:1fr; }
+      .timeline-row { grid-template-columns:repeat(2,1fr); }
+      .roles-grid { grid-template-columns:1fr; }
+      .footer-grid { grid-template-columns:1fr 1fr; }
+      .footer-brand { grid-column:1/-1; }
+      .cta-form { flex-direction:column; }
     }
-
-    a { text-decoration: none; color: inherit; }
-    img { max-width: 100%; }
-
-    .container    { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-    .container-sm { max-width: 860px;  margin: 0 auto; padding: 0 24px; }
-
-    h1 { font-size: clamp(2.4rem,5vw,4.25rem); font-weight: 800; line-height: 1.1; letter-spacing: -.03em; }
-    h2 { font-size: clamp(1.75rem,3vw,2.625rem); font-weight: 700; line-height: 1.2; letter-spacing: -.02em; }
-    h3 { font-size: clamp(1.2rem,2vw,1.625rem); font-weight: 600; line-height: 1.3; }
-    h4 { font-size: 1.0625rem; font-weight: 600; line-height: 1.4; }
-    p  { line-height: 1.75; }
-
-    .label {
-      display: inline-block;
-      font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
-      padding: 4px 12px; border-radius: 100px; margin-bottom: 14px;
-    }
-    .label--teal  { background: var(--teal-light);  color: #0E7490; }
-    .label--green { background: var(--green-light); color: #065F46; }
-    .label--amber { background: var(--amber-light); color: #92400E; }
-    .label--navy  { background: rgba(11,37,69,.1);  color: var(--navy); }
-    .label--white { background: rgba(255,255,255,.15); color: #fff; }
-
-    .btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 12px 24px; border-radius: var(--rs);
-      font-size: .9375rem; font-weight: 600; cursor: pointer;
-      transition: all .2s; border: none; white-space: nowrap;
-    }
-    .btn--primary       { background: var(--teal); color: #fff; }
-    .btn--primary:hover { background: #0891A0; transform: translateY(-1px); box-shadow: var(--shadow-lg); }
-    .btn--navy          { background: var(--navy); color: #fff; }
-    .btn--navy:hover    { background: var(--navy-dark); transform: translateY(-1px); box-shadow: var(--shadow-lg); }
-    .btn--ghost         { background: rgba(255,255,255,.1); color: #fff; border: 1.5px solid rgba(255,255,255,.35); }
-    .btn--ghost:hover   { background: rgba(255,255,255,.18); border-color: rgba(255,255,255,.7); }
-    .btn--outline       { background: transparent; color: var(--navy); border: 1.5px solid var(--border); }
-    .btn--outline:hover { border-color: var(--navy); background: var(--off-white); }
-    .btn--lg { padding: 16px 32px; font-size: 1rem; border-radius: var(--r); }
-
-    .nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      background: rgba(7,26,51,.96);
-      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(255,255,255,.07);
-    }
-    .nav-inner {
-      max-width: 1200px; margin: 0 auto; padding: 0 24px;
-      display: flex; align-items: center; justify-content: space-between;
-      height: 66px;
-    }
-    .nav-logo {
-      font-size: 1.4rem; font-weight: 800; letter-spacing: -.03em;
-      color: #fff; display: flex; align-items: center; gap: 9px;
-    }
-    .nav-logo-icon {
-      width: 30px; height: 30px; background: var(--teal); border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .nav-logo span { color: var(--teal); }
-    .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
-    .nav-links a { color: rgba(255,255,255,.7); font-size: .9rem; font-weight: 500; transition: color .15s; }
-    .nav-links a:hover { color: #fff; }
-    .nav-actions { display: flex; align-items: center; gap: 10px; }
-    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; }
-    .hamburger span { display: block; width: 22px; height: 2px; background: #fff; border-radius: 2px; transition: all .3s; }
-    .mobile-menu {
-      display: none; position: fixed; top: 66px; left: 0; right: 0; z-index: 99;
-      background: var(--navy-dark); padding: 20px 24px;
-      border-bottom: 1px solid rgba(255,255,255,.1);
-    }
-    .mobile-menu.open { display: block; }
-    .mobile-menu a { display: block; color: rgba(255,255,255,.75); font-size: .95rem; font-weight: 500; padding: 11px 0; border-bottom: 1px solid rgba(255,255,255,.07); }
-    .mobile-menu a:last-of-type { border-bottom: none; }
-    .mobile-menu .btn { display: block; text-align: center; margin-top: 16px; }
-
-    .hero {
-      background: linear-gradient(135deg, #071A33 0%, #0B2545 50%, #1A3A5C 100%);
-      padding: 152px 0 96px; position: relative; overflow: hidden;
-    }
-    .hero::before {
-      content: ''; position: absolute; top: -40%; right: -15%;
-      width: 700px; height: 700px;
-      background: radial-gradient(circle, rgba(14,165,176,.14) 0%, transparent 65%);
-      pointer-events: none;
-    }
-    .hero::after {
-      content: ''; position: absolute; bottom: -30%; left: -10%;
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(5,150,105,.09) 0%, transparent 65%);
-      pointer-events: none;
-    }
-    .hero-inner { position: relative; z-index: 1; }
-    .hero-eyebrow { display: flex; align-items: center; gap: 12px; margin-bottom: 22px; }
-    .hero-eyebrow-line { width: 28px; height: 2px; background: var(--teal); }
-    .hero-eyebrow-text { font-size: .8125rem; font-weight: 700; color: var(--teal); text-transform: uppercase; letter-spacing: .1em; }
-    .hero h1 { color: #fff; margin-bottom: 22px; max-width: 760px; }
-    .hero h1 .accent { color: var(--teal); }
-    .hero-sub { font-size: clamp(.95rem,1.5vw,1.15rem); color: rgba(255,255,255,.68); max-width: 560px; margin-bottom: 36px; }
-    .hero-ctas { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-bottom: 60px; }
-    .hero-stats {
-      display: grid; grid-template-columns: repeat(4,1fr); gap: 1px;
-      background: rgba(255,255,255,.1); border-radius: var(--r); overflow: hidden; max-width: 760px;
-    }
-    .hero-stat { background: rgba(255,255,255,.05); padding: 18px 22px; backdrop-filter: blur(6px); }
-    .hero-stat-val { font-size: 1.75rem; font-weight: 800; color: #fff; line-height: 1; margin-bottom: 3px; }
-    .hero-stat-val .u { font-size: .9375rem; color: var(--teal); }
-    .hero-stat-lbl { font-size: .75rem; color: rgba(255,255,255,.48); }
-
-    .tech-strip { padding: 44px 0; background: var(--white); border-bottom: 1px solid var(--border); }
-    .tech-strip-label { text-align: center; font-size: .725rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--text-faint); margin-bottom: 24px; }
-    .tech-logos { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 12px; }
-    .tech-chip {
-      display: flex; align-items: center; gap: 7px;
-      padding: 8px 16px; border: 1px solid var(--border); border-radius: var(--rs);
-      background: var(--off-white); font-size: .8125rem; font-weight: 600; color: var(--text-mid);
-    }
-    .tech-chip-icon { font-size: 1.1rem; }
-
-    .comparison { padding: 96px 0; background: var(--off-white); }
-    .section-header { text-align: center; margin-bottom: 52px; }
-    .section-header p { color: var(--text-light); font-size: 1.0625rem; max-width: 560px; margin: 14px auto 0; }
-    .cmp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 860px; margin: 0 auto; }
-    .cmp-card { border-radius: var(--rl); padding: 36px; }
-    .cmp-card--bad  { background: var(--white); border: 2px solid var(--border); }
-    .cmp-card--good { background: var(--navy); }
-    .cmp-tag { font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 18px; }
-    .cmp-card--bad  .cmp-tag { color: var(--text-faint); }
-    .cmp-card--good .cmp-tag { color: var(--teal); }
-    .cmp-card h3 { margin-bottom: 22px; }
-    .cmp-card--good h3 { color: #fff; }
-    .cmp-row { display: flex; align-items: center; gap: 11px; padding: 11px 0; border-bottom: 1px solid var(--border); font-size: .9rem; }
-    .cmp-card--good .cmp-row { border-color: rgba(255,255,255,.1); color: rgba(255,255,255,.8); }
-    .cmp-row:last-child { border-bottom: none; }
-    .cmp-ic { width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: .7rem; flex-shrink: 0; }
-    .cmp-ic--bad  { background: #FEE2E2; color: #DC2626; font-weight: 700; }
-    .cmp-ic--good { background: var(--green-light); color: var(--green); font-weight: 700; }
-    .cmp-row span { flex: 1; }
-    .cmp-val { font-weight: 700; font-size: .825rem; }
-    .cmp-card--bad  .cmp-val { color: var(--text-mid); }
-    .cmp-card--good .cmp-val { color: var(--teal); }
-
-    .how { padding: 96px 0; background: var(--white); }
-    .steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; margin-top: 4px; }
-    .step { padding: 30px; border: 1px solid var(--border); border-radius: var(--r); transition: box-shadow .3s, transform .3s; }
-    .step:hover { box-shadow: var(--shadow-xl); transform: translateY(-4px); }
-    .step-num {
-      width: 44px; height: 44px; border-radius: 11px; background: var(--navy);
-      color: #fff; display: flex; align-items: center; justify-content: center;
-      font-size: 1.125rem; font-weight: 800; margin-bottom: 18px;
-    }
-    .step h4 { margin-bottom: 10px; }
-    .step p  { color: var(--text-light); font-size: .9rem; }
-
-    .audience { padding: 96px 0; }
-    .audience--alt { background: var(--off-white); }
-    .aud-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
-    .aud-grid--rev > :first-child { order: 2; }
-    .aud-grid--rev > :last-child  { order: 1; }
-    .aud-content h2 { margin-bottom: 14px; }
-    .aud-intro { color: var(--text-light); font-size: 1rem; margin-bottom: 28px; line-height: 1.75; }
-    .benefits { list-style: none; display: flex; flex-direction: column; gap: 14px; margin-bottom: 28px; }
-    .benefit { display: flex; gap: 14px; align-items: flex-start; }
-    .benefit-icon {
-      width: 34px; height: 34px; border-radius: 9px;
-      display: flex; align-items: center; justify-content: center; font-size: .95rem;
-      flex-shrink: 0; margin-top: 2px;
-    }
-    .bi--teal  { background: var(--teal-light); }
-    .bi--green { background: var(--green-light); }
-    .bi--amber { background: var(--amber-light); }
-    .bi--navy  { background: rgba(11,37,69,.08); }
-    .benefit h5 { font-size: .9rem; font-weight: 600; margin-bottom: 2px; }
-    .benefit p  { font-size: .8375rem; color: var(--text-light); }
-
-    .aud-panel {
-      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
-      border-radius: var(--rl); padding: 36px; min-height: 380px;
-      display: flex; flex-direction: column; justify-content: center;
-      position: relative; overflow: hidden;
-    }
-    .aud-panel::before {
-      content: ''; position: absolute; top: -40px; right: -40px;
-      width: 180px; height: 180px;
-      background: radial-gradient(circle, rgba(14,165,176,.22) 0%, transparent 65%);
-    }
-    .panel-card {
-      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.11);
-      border-radius: var(--r); padding: 18px; margin-bottom: 14px; position: relative; z-index: 1;
-    }
-    .panel-card:last-child { margin-bottom: 0; }
-    .panel-card-hd { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
-    .pdot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
-    .pdot--green { background: #34D399; }
-    .pdot--teal  { background: var(--teal); }
-    .pdot--amber { background: #FBBF24; }
-    .pdot--blue  { background: #60A5FA; }
-    .pdot--red   { background: #F87171; }
-    .panel-card-title { color: rgba(255,255,255,.85); font-size: .825rem; font-weight: 600; }
-    .panel-card-val { color: #fff; font-size: 1.5rem; font-weight: 800; line-height: 1; margin-bottom: 3px; }
-    .panel-card-sub { color: rgba(255,255,255,.45); font-size: .7rem; }
-    .panel-progress { height: 4px; background: rgba(255,255,255,.1); border-radius: 2px; margin-top: 10px; overflow: hidden; }
-    .panel-bar { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--teal), #34D399); }
-    .panel-badge {
-      display: inline-flex; align-items: center; gap: 5px;
-      background: rgba(52,211,153,.2); border: 1px solid rgba(52,211,153,.3);
-      border-radius: 100px; padding: 3px 10px;
-      font-size: .7rem; font-weight: 600; color: #34D399; margin-top: 7px;
-    }
-    .panel-tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
-    .panel-tag {
-      background: rgba(255,255,255,.1); border-radius: 100px;
-      padding: 3px 10px; font-size: .7rem; font-weight: 500; color: rgba(255,255,255,.7);
-    }
-
-    .investors { background: var(--navy); padding: 96px 0; }
-    .investors .section-header h2 { color: #fff; }
-    .investors .section-header p  { color: rgba(255,255,255,.55); }
-    .inv-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 52px; }
-    .inv-card {
-      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
-      border-radius: var(--r); padding: 28px; transition: background .3s, transform .3s;
-    }
-    .inv-card:hover { background: rgba(255,255,255,.1); transform: translateY(-4px); }
-    .inv-icon { font-size: 1.75rem; margin-bottom: 14px; }
-    .inv-card h4 { color: #fff; margin-bottom: 8px; }
-    .inv-card p  { color: rgba(255,255,255,.55); font-size: .9rem; line-height: 1.65; }
-    .inv-highlight { color: var(--teal) !important; font-weight: 600; }
-
-    .rev-box {
-      background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
-      border-radius: var(--rl); padding: 44px; margin-top: 52px;
-    }
-    .rev-box h3 { color: #fff; margin-bottom: 8px; }
-    .rev-box > p { color: rgba(255,255,255,.55); font-size: .95rem; margin-bottom: 36px; }
-    .rev-streams { display: grid; grid-template-columns: repeat(3,1fr); gap: 28px; }
-    .rev-stream h5 { color: var(--teal); font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 8px; }
-    .rev-stream p  { color: rgba(255,255,255,.65); font-size: .875rem; line-height: 1.65; }
-
-    .timeline-row {
-      display: grid; grid-template-columns: repeat(4,1fr); gap: 1px;
-      background: rgba(255,255,255,.08); border-radius: var(--r); overflow: hidden; margin-top: 36px;
-    }
-    .tl-phase { background: var(--navy-dark); padding: 18px 20px; }
-    .tl-phase-lbl { font-size: .7rem; font-weight: 700; color: var(--teal); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 5px; }
-    .tl-phase-title { font-size: .8375rem; font-weight: 600; color: #fff; margin-bottom: 3px; }
-    .tl-phase-sub   { font-size: .7rem; color: rgba(255,255,255,.38); }
-
-    .team { padding: 96px 0; background: var(--off-white); }
-    .roles-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 44px; }
-    .role-card {
-      background: var(--white); border: 1px solid var(--border);
-      border-radius: var(--r); padding: 28px; transition: box-shadow .3s, transform .3s;
-    }
-    .role-card:hover { box-shadow: var(--shadow-xl); transform: translateY(-4px); }
-    .role-card h4 { margin-bottom: 10px; }
-    .role-card p  { color: var(--text-light); font-size: .875rem; margin-bottom: 18px; line-height: 1.7; }
-    .skills { display: flex; flex-wrap: wrap; gap: 7px; }
-    .skill { background: var(--bg); border: 1px solid var(--border); border-radius: 100px; padding: 3px 11px; font-size: .7375rem; font-weight: 500; color: var(--text-mid); }
-
-    .founder-box {
-      background: var(--white); border: 1px solid var(--border);
-      border-radius: var(--rl); padding: 44px; margin-top: 44px;
-      display: grid; grid-template-columns: auto 1fr; gap: 44px; align-items: center;
-    }
-    .founder-avatar {
-      width: 100px; height: 100px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--navy) 0%, var(--teal) 100%);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 2.5rem; font-weight: 800; color: #fff; flex-shrink: 0;
-    }
-    .founder-info h3 { margin-bottom: 8px; }
-    .founder-info p  { color: var(--text-light); font-size: .9rem; line-height: 1.75; }
-    .founder-badges  { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
-    .fbadge {
-      background: var(--bg); border: 1px solid var(--border); border-radius: 100px;
-      padding: 4px 12px; font-size: .7375rem; font-weight: 500; color: var(--text-mid);
-    }
-
-    .cta-banner { background: linear-gradient(135deg, var(--navy) 0%, #1A3A5C 100%); padding: 80px 0; text-align: center; }
-    .cta-banner h2 { color: #fff; margin-bottom: 14px; }
-    .cta-banner p  { color: rgba(255,255,255,.65); font-size: 1.0625rem; max-width: 480px; margin: 0 auto 36px; }
-    .cta-form { display: flex; gap: 10px; max-width: 420px; margin: 0 auto; }
-    .cta-form input {
-      flex: 1; padding: 13px 18px; border-radius: var(--rs);
-      border: 1px solid rgba(255,255,255,.2); background: rgba(255,255,255,.1);
-      color: #fff; font-family: inherit; font-size: .9375rem; outline: none; transition: border-color .2s;
-    }
-    .cta-form input::placeholder { color: rgba(255,255,255,.38); }
-    .cta-form input:focus { border-color: var(--teal); }
-    .cta-note { font-size: .8rem; color: rgba(255,255,255,.38); margin-top: 14px; }
-
-    footer { background: var(--navy-dark); padding: 56px 0 28px; }
-    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 44px; margin-bottom: 44px; }
-    .footer-brand p { font-size: .9rem; color: rgba(255,255,255,.5); margin-top: 12px; line-height: 1.75; max-width: 260px; }
-    .footer-col h5 { color: #fff; font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 14px; }
-    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
-    .footer-col ul li a { color: rgba(255,255,255,.5); font-size: .9rem; transition: color .15s; }
-    .footer-col ul li a:hover { color: #fff; }
-    .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,.08); padding-top: 28px;
-      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;
-    }
-    .footer-bottom p { font-size: .825rem; color: rgba(255,255,255,.38); }
-    .footer-legal { display: flex; gap: 20px; }
-    .footer-legal a { font-size: .825rem; color: rgba(255,255,255,.35); transition: color .15s; }
-    .footer-legal a:hover { color: rgba(255,255,255,.7); }
-    .footer-disclaimer { font-size: .75rem; color: rgba(255,255,255,.28); margin-top: 18px; max-width: 700px; line-height: 1.6; }
-
-    @media (max-width: 1024px) {
-      .inv-grid    { grid-template-columns: repeat(2,1fr); }
-      .rev-streams { grid-template-columns: repeat(2,1fr); }
-    }
-    @media (max-width: 768px) {
-      .nav-links, .nav-actions .btn--ghost { display: none; }
-      .hamburger { display: flex; }
-      .hero { padding: 120px 0 72px; }
-      .hero-stats { grid-template-columns: repeat(2,1fr); }
-      .cmp-grid { grid-template-columns: 1fr; }
-      .steps { grid-template-columns: 1fr; }
-      .aud-grid { grid-template-columns: 1fr; gap: 32px; }
-      .aud-grid--rev > :first-child { order: 1; }
-      .aud-grid--rev > :last-child  { order: 2; }
-      .aud-panel { min-height: auto; }
-      .inv-grid    { grid-template-columns: 1fr; }
-      .rev-streams { grid-template-columns: 1fr; }
-      .timeline-row { grid-template-columns: repeat(2,1fr); }
-      .roles-grid  { grid-template-columns: 1fr; }
-      .founder-box { grid-template-columns: 1fr; gap: 24px; }
-      .footer-grid { grid-template-columns: 1fr 1fr; }
-      .footer-brand { grid-column: 1/-1; }
-      .cta-form { flex-direction: column; }
-    }
-    @media (max-width: 480px) {
-      .footer-grid { grid-template-columns: 1fr; }
-      .timeline-row { grid-template-columns: 1fr; }
-      .hero-stats { grid-template-columns: repeat(2,1fr); }
-    }
+    @media (max-width:480px) { .footer-grid { grid-template-columns:1fr; } .timeline-row { grid-template-columns:1fr; } .hero-stats { grid-template-columns:repeat(2,1fr); } }
   </style>
 </head>
 <body>
@@ -400,7 +242,7 @@
           <polyline points="9,22 9,12 15,12 15,22" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </div>
-      Home<span>easy</span>
+      <span style="color:#fff;">Home</span><span>easy</span>
     </a>
     <ul class="nav-links">
       <li><a href="#how">How It Works</a></li>
@@ -411,7 +253,7 @@
     </ul>
     <div class="nav-actions">
       <a href="#early-access" class="btn btn--ghost" style="padding:10px 18px;font-size:.875rem;">Get Early Access</a>
-      <a href="mailto:hello@homeasy.co.uk" class="btn btn--primary" style="padding:10px 18px;font-size:.875rem;">Contact Us</a>
+      <a href="mailto:admin@homeasy.co.uk" class="btn btn--primary" style="padding:10px 18px;font-size:.875rem;">Contact Us</a>
     </div>
     <div class="hamburger" onclick="toggleMenu()" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -435,21 +277,17 @@
   <div class="container hero-inner">
     <div class="hero-eyebrow">
       <div class="hero-eyebrow-line"></div>
-      <span class="hero-eyebrow-text">UK Property Tech &nbsp;·&nbsp; Launching 2026</span>
+      <span class="hero-eyebrow-text">UK Property Tech &nbsp;&middot;&nbsp; Launching 2026</span>
     </div>
-    <h1>Buy. Sell. Complete.<br><span class="accent">40% Faster.</span></h1>
-    <p class="hero-sub">
-      The all-in-one UK property transaction platform. Connect with vetted solicitors,
-      compare mortgages, and move from offer accepted to completion in 8–12 weeks —
-      not the industry average of 20.
-    </p>
+    <h1>Buy. Sell. Complete.<br><span class="accent">60% Faster.</span></h1>
+    <p class="hero-sub">The all-in-one UK property transaction platform. Choose from a wide range of vetted solicitors, compare mortgages, and move from offer accepted to completion in 8&ndash;12 weeks &mdash; not the industry average of 20.</p>
     <div class="hero-ctas">
       <a href="#early-access" class="btn btn--primary btn--lg">Get Early Access</a>
       <a href="#how" class="btn btn--ghost btn--lg">See How It Works</a>
     </div>
     <div class="hero-stats">
-      <div class="hero-stat"><div class="hero-stat-val">8–12<span class="u"> wks</span></div><div class="hero-stat-lbl">Average completion</div></div>
-      <div class="hero-stat"><div class="hero-stat-val">£0</div><div class="hero-stat-lbl">Buyer platform fee</div></div>
+      <div class="hero-stat"><div class="hero-stat-val">8&ndash;12<span class="u"> wks</span></div><div class="hero-stat-lbl">Average completion</div></div>
+      <div class="hero-stat"><div class="hero-stat-val">&pound;0</div><div class="hero-stat-lbl">Buyer platform fee</div></div>
       <div class="hero-stat"><div class="hero-stat-val">6<span class="u">+</span></div><div class="hero-stat-lbl">Integrated modules</div></div>
       <div class="hero-stat"><div class="hero-stat-val">AI<span class="u">&#8209;first</span></div><div class="hero-stat-lbl">Every step reviewed</div></div>
     </div>
@@ -460,13 +298,13 @@
   <div class="container">
     <div class="tech-strip-label">Built on</div>
     <div class="tech-logos">
-      <div class="tech-chip"><span class="tech-chip-icon">☁️</span> AWS eu-west-2</div>
-      <div class="tech-chip"><span class="tech-chip-icon">🤖</span> Claude via Bedrock</div>
-      <div class="tech-chip"><span class="tech-chip-icon">💳</span> Stripe Connect</div>
-      <div class="tech-chip"><span class="tech-chip-icon">📄</span> Amazon Textract</div>
-      <div class="tech-chip"><span class="tech-chip-icon">🏠</span> HMLR Business Gateway</div>
-      <div class="tech-chip"><span class="tech-chip-icon">✅</span> Onfido KYC</div>
-      <div class="tech-chip"><span class="tech-chip-icon">🔒</span> GDPR · FCA · SRA</div>
+      <div class="tech-chip"><span class="tech-chip-icon">&#x2601;&#xFE0F;</span> AWS eu-west-2</div>
+      <div class="tech-chip"><span class="tech-chip-icon">&#x1F916;</span> Claude via Bedrock</div>
+      <div class="tech-chip"><span class="tech-chip-icon">&#x1F4B3;</span> Stripe Connect</div>
+      <div class="tech-chip"><span class="tech-chip-icon">&#x1F4C4;</span> Amazon Textract</div>
+      <div class="tech-chip"><span class="tech-chip-icon">&#x1F3E0;</span> HMLR Business Gateway</div>
+      <div class="tech-chip"><span class="tech-chip-icon">&#x2705;</span> Onfido KYC</div>
+      <div class="tech-chip"><span class="tech-chip-icon">&#x1F512;</span> GDPR &middot; FCA &middot; SRA</div>
     </div>
   </div>
 </div>
@@ -476,28 +314,28 @@
     <div class="section-header">
       <span class="label label--navy">The Problem</span>
       <h2>UK property transactions are broken</h2>
-      <p>Fragmented parties, lost documents, zero visibility. The average transaction takes 16–20 weeks and 1 in 4 falls through.</p>
+      <p>Fragmented parties, lost documents, zero visibility. The average transaction takes 16&ndash;20 weeks and 1 in 4 falls through.</p>
     </div>
     <div class="cmp-grid">
       <div class="cmp-card cmp-card--bad">
         <div class="cmp-tag">Today</div>
         <h3>Fragmented &amp; slow</h3>
-        <div class="cmp-row"><div class="cmp-ic cmp-ic--bad">✕</div><span>Average transaction time</span><div class="cmp-val">16–20 weeks</div></div>
-        <div class="cmp-row"><div class="cmp-ic cmp-ic--bad">✕</div><span>Fall-through rate</span><div class="cmp-val">~25%</div></div>
-        <div class="cmp-row"><div class="cmp-ic cmp-ic--bad">✕</div><span>Transaction visibility</span><div class="cmp-val">Near zero</div></div>
-        <div class="cmp-row"><div class="cmp-ic cmp-ic--bad">✕</div><span>Document chasing</span><div class="cmp-val">Manual / email</div></div>
-        <div class="cmp-row"><div class="cmp-ic cmp-ic--bad">✕</div><span>Solicitor matching</span><div class="cmp-val">Word of mouth</div></div>
-        <div class="cmp-row"><div class="cmp-ic cmp-ic--bad">✕</div><span>Mortgage comparison</span><div class="cmp-val">Broker / hours</div></div>
+        <div class="cmp-row"><div class="cmp-ic cmp-ic--bad">&times;</div><span>Average transaction time</span><div class="cmp-val">16&ndash;20 weeks</div></div>
+        <div class="cmp-row"><div class="cmp-ic cmp-ic--bad">&times;</div><span>Fall-through rate</span><div class="cmp-val">~25%</div></div>
+        <div class="cmp-row"><div class="cmp-ic cmp-ic--bad">&times;</div><span>Transaction visibility</span><div class="cmp-val">Near zero</div></div>
+        <div class="cmp-row"><div class="cmp-ic cmp-ic--bad">&times;</div><span>Document chasing</span><div class="cmp-val">Manual / email</div></div>
+        <div class="cmp-row"><div class="cmp-ic cmp-ic--bad">&times;</div><span>Solicitor selection</span><div class="cmp-val">Word of mouth</div></div>
+        <div class="cmp-row"><div class="cmp-ic cmp-ic--bad">&times;</div><span>Mortgage comparison</span><div class="cmp-val">Broker / hours</div></div>
       </div>
       <div class="cmp-card cmp-card--good">
         <div class="cmp-tag">With Homeasy</div>
         <h3 style="color:#fff;">Connected &amp; fast</h3>
-        <div class="cmp-row"><div class="cmp-ic cmp-ic--good">✓</div><span>Average transaction time</span><div class="cmp-val">8–12 weeks</div></div>
-        <div class="cmp-row"><div class="cmp-ic cmp-ic--good">✓</div><span>AI-monitored risk flags</span><div class="cmp-val">Real-time</div></div>
-        <div class="cmp-row"><div class="cmp-ic cmp-ic--good">✓</div><span>Full transaction visibility</span><div class="cmp-val">Every party</div></div>
-        <div class="cmp-row"><div class="cmp-ic cmp-ic--good">✓</div><span>Document pipeline</span><div class="cmp-val">Automated</div></div>
-        <div class="cmp-row"><div class="cmp-ic cmp-ic--good">✓</div><span>Solicitor matching</span><div class="cmp-val">AI + verified</div></div>
-        <div class="cmp-row"><div class="cmp-ic cmp-ic--good">✓</div><span>Mortgage comparison</span><div class="cmp-val">Instant</div></div>
+        <div class="cmp-row"><div class="cmp-ic cmp-ic--good">&#x2713;</div><span>Average transaction time</span><div class="cmp-val">8&ndash;12 weeks</div></div>
+        <div class="cmp-row"><div class="cmp-ic cmp-ic--good">&#x2713;</div><span>AI-monitored risk flags</span><div class="cmp-val">Real-time</div></div>
+        <div class="cmp-row"><div class="cmp-ic cmp-ic--good">&#x2713;</div><span>Full transaction visibility</span><div class="cmp-val">Every party</div></div>
+        <div class="cmp-row"><div class="cmp-ic cmp-ic--good">&#x2713;</div><span>Document pipeline</span><div class="cmp-val">Automated</div></div>
+        <div class="cmp-row"><div class="cmp-ic cmp-ic--good">&#x2713;</div><span>Solicitor marketplace</span><div class="cmp-val">Verified &amp; rated</div></div>
+        <div class="cmp-row"><div class="cmp-ic cmp-ic--good">&#x2713;</div><span>Mortgage comparison</span><div class="cmp-val">Instant</div></div>
       </div>
     </div>
   </div>
@@ -508,11 +346,11 @@
     <div class="section-header">
       <span class="label label--teal">How It Works</span>
       <h2>Three steps to completion</h2>
-      <p>Whether you're buying, selling, or a professional on the platform — Homeasy orchestrates every party, every document, every milestone.</p>
+      <p>Whether you're buying, selling, or a professional on the platform &mdash; Homeasy orchestrates every party, every document, every milestone.</p>
     </div>
     <div class="steps">
-      <div class="step"><div class="step-num">1</div><h4>Connect &amp; Compare</h4><p>Create your case. Compare mortgages in minutes using real lender criteria. Get matched with a vetted, SRA-verified solicitor based on your property type, tenure, and location.</p></div>
-      <div class="step"><div class="step-num">2</div><h4>AI Reviews, Professionals Verify</h4><p>Upload documents once. Claude AI classifies, extracts, and flags issues automatically. Your solicitor and lender verify and sign off — no chasing, no lost PDFs, no missed steps.</p></div>
+      <div class="step"><div class="step-num">1</div><h4>Connect &amp; Compare</h4><p>Create your case. Compare mortgages in minutes using real lender criteria. Choose your solicitor from a wide range of SRA-verified professionals based on your property type, tenure, and location.</p></div>
+      <div class="step"><div class="step-num">2</div><h4>AI Reviews, Professionals Verify</h4><p>Upload documents once. Claude AI classifies, extracts, and flags issues automatically. Your solicitor and lender verify and sign off &mdash; no chasing, no lost PDFs, no missed steps.</p></div>
       <div class="step"><div class="step-num">3</div><h4>Complete Faster</h4><p>Track every milestone across all parties in real time. Automated SLA monitoring, smart reminders, and proactive chain alerts keep your transaction moving toward completion.</p></div>
     </div>
   </div>
@@ -526,18 +364,19 @@
         <h2>Finally know where your transaction stands</h2>
         <p class="aud-intro">No more phoning your solicitor for updates. No more wondering if the other side has signed. Homeasy gives every buyer and seller a real-time view of their transaction, from offer to keys.</p>
         <ul class="benefits">
-          <li class="benefit"><div class="benefit-icon bi--teal">⚡</div><div><h5>8–12 weeks to completion</h5><p>Chain-free? As fast as 6–8 weeks. That's 40–50% faster than the UK average.</p></div></li>
-          <li class="benefit"><div class="benefit-icon bi--green">💰</div><div><h5>Save £500–1,000 per transaction</h5><p>Lower solicitor fees, no broker fees on mortgage comparison, and fewer delays that cost money.</p></div></li>
-          <li class="benefit"><div class="benefit-icon bi--teal">📋</div><div><h5>Compare mortgages in minutes</h5><p>Instant affordability check across top UK lenders. Complex income handled — salary, bonus, RSU, rental.</p></div></li>
-          <li class="benefit"><div class="benefit-icon bi--navy">🔍</div><div><h5>Vetted solicitor marketplace</h5><p>SRA-verified profiles, real transaction reviews, transparent fixed fees. No surprises at completion.</p></div></li>
-          <li class="benefit"><div class="benefit-icon bi--amber">🔔</div><div><h5>Proactive alerts, not radio silence</h5><p>Know the moment searches land, contracts exchange, or your chain moves — before you have to ask.</p></div></li>
+          <li class="benefit"><div class="benefit-icon bi--teal">&#x26A1;</div><div><h5>8&ndash;12 weeks to completion</h5><p>Chain-free? As fast as 6&ndash;8 weeks. That's up to 60% faster than the UK average.</p></div></li>
+          <li class="benefit"><div class="benefit-icon bi--green">&#x1F4B0;</div><div><h5>Save on transaction costs</h5><p>Lower solicitor fees, no broker fees on mortgage comparison, and fewer delays that cost money.</p></div></li>
+          <li class="benefit"><div class="benefit-icon bi--teal">&#x1F4CB;</div><div><h5>Compare mortgages in minutes</h5><p>Instant affordability check across top UK lenders. Complex income handled &mdash; salary, bonus, RSU, rental.</p></div></li>
+          <li class="benefit"><div class="benefit-icon bi--navy">&#x1F50D;</div><div><h5>Wide range of vetted solicitors</h5><p>SRA-verified profiles, real transaction reviews, transparent fixed fees. Choose the right solicitor for your case.</p></div></li>
+          <li class="benefit"><div class="benefit-icon bi--amber">&#x1F514;</div><div><h5>Proactive alerts, not radio silence</h5><p>Know the moment searches land, contracts exchange, or your chain moves &mdash; before you have to ask.</p></div></li>
         </ul>
         <a href="#early-access" class="btn btn--navy">Join the Waiting List</a>
       </div>
       <div class="aud-panel">
-        <div class="panel-card"><div class="panel-card-hd"><div class="pdot pdot--green"></div><div class="panel-card-title">Your Transaction — 14 Palace Gardens</div></div><div class="panel-card-val">Week 7</div><div class="panel-card-sub">Exchange target: 2 weeks away</div><div class="panel-progress"><div class="panel-bar" style="width:68%"></div></div><div class="panel-badge">✓ On track — 68% complete</div></div>
-        <div class="panel-card"><div class="panel-card-hd"><div class="pdot pdot--teal"></div><div class="panel-card-title">Mortgage — Nationwide 4.89% 5yr Fix</div></div><div class="panel-card-val">£312,000</div><div class="panel-card-sub">Offer issued · LTV 78% · DIP in 4 min</div></div>
-        <div class="panel-card"><div class="panel-card-hd"><div class="pdot pdot--amber"></div><div class="panel-card-title">Solicitor — Emma Clarke, Clarke &amp; Co</div></div><div class="panel-card-val" style="font-size:1.125rem;">Awaiting search results</div><div class="panel-card-sub">SRA Verified · 4.9★ · 47 completions</div><div class="panel-tag-row"><span class="panel-tag">Local Authority Search</span><span class="panel-tag">Water Search</span></div></div>
+        <div class="panel-card"><div class="panel-card-hd"><div class="pdot pdot--green"></div><div class="panel-card-title">Your Transaction &mdash; 14 Palace Gardens</div></div><div class="panel-card-val">Week 7</div><div class="panel-card-sub">Exchange target: 2 weeks away</div><div class="panel-progress"><div class="panel-bar" style="width:68%"></div></div><div class="panel-badge">&#x2713; On track &mdash; 68% complete</div></div>
+        <div class="panel-card"><div class="panel-card-hd"><div class="pdot pdot--teal"></div><div class="panel-card-title">Mortgage &mdash; Nationwide 4.89% 5yr Fix</div></div><div class="panel-card-val">&pound;312,000</div><div class="panel-card-sub">Offer issued &middot; LTV 78% &middot; DIP in 4 min</div></div>
+        <div class="panel-card"><div class="panel-card-hd"><div class="pdot pdot--amber"></div><div class="panel-card-title">Solicitor &mdash; Emma Clarke, Clarke &amp; Co</div></div><div class="panel-card-val" style="font-size:1.125rem;">Awaiting search results</div><div class="panel-card-sub">SRA Verified &middot; 4.9&#x2605; &middot; 47 completions</div><div class="panel-tag-row"><span class="panel-tag">Local Authority Search</span><span class="panel-tag">Water Search</span></div></div>
+        <p class="panel-note">* Representative illustration only</p>
       </div>
     </div>
   </div>
@@ -549,20 +388,21 @@
       <div class="aud-content">
         <span class="label label--green">For Solicitors</span>
         <h2>Double your caseload. Halve the admin.</h2>
-        <p class="aud-intro">Homeasy handles the repetitive work — document chasing, checklist generation, SLA tracking — so you focus on the legal work only a qualified solicitor can do. Your first 5 cases are completely free.</p>
+        <p class="aud-intro">Homeasy handles the repetitive work &mdash; document chasing, checklist generation, SLA tracking &mdash; so you focus on the legal work only a qualified solicitor can do. Start with a free trial period on your first cases.</p>
         <ul class="benefits">
-          <li class="benefit"><div class="benefit-icon bi--green">📂</div><div><h5>AI-generated document checklists</h5><p>Per transaction type, tenure, buyer profile, and lender requirements. Always up to date.</p></div></li>
-          <li class="benefit"><div class="benefit-icon bi--teal">✍️</div><div><h5>LLM-assisted enquiry drafting</h5><p>Claude reads the title register and suggests relevant pre-contract enquiries. You review and approve.</p></div></li>
-          <li class="benefit"><div class="benefit-icon bi--green">⏱️</div><div><h5>SLA clock that protects you</h5><p>The clock shifts automatically when the ball is in another party's court. Your performance score only tracks time in your hands.</p></div></li>
-          <li class="benefit"><div class="benefit-icon bi--navy">📧</div><div><h5>Email relay per case</h5><p>Every external email to case-{id}@homeasy.co.uk lands in the platform with attachments extracted. Full audit trail, automatically.</p></div></li>
-          <li class="benefit"><div class="benefit-icon bi--amber">⭐</div><div><h5>Verified reviews that build your reputation</h5><p>Transaction-verified reviews only. Reply publicly. Grow your profile and attract more cases.</p></div></li>
+          <li class="benefit"><div class="benefit-icon bi--green">&#x1F4C2;</div><div><h5>AI-generated document checklists</h5><p>Per transaction type, tenure, buyer profile, and lender requirements. Always up to date.</p></div></li>
+          <li class="benefit"><div class="benefit-icon bi--teal">&#x270D;&#xFE0F;</div><div><h5>LLM-assisted enquiry drafting</h5><p>Claude reads the title register and suggests relevant pre-contract enquiries. You review and approve.</p></div></li>
+          <li class="benefit"><div class="benefit-icon bi--green">&#x23F1;&#xFE0F;</div><div><h5>SLA clock that protects you</h5><p>The clock shifts automatically when the ball is in another party's court. Your performance score only tracks time in your hands.</p></div></li>
+          <li class="benefit"><div class="benefit-icon bi--navy">&#x1F4E7;</div><div><h5>Email relay per case</h5><p>Every external email to case-{id}@homeasy.co.uk lands in the platform with attachments extracted. Full audit trail, automatically.</p></div></li>
+          <li class="benefit"><div class="benefit-icon bi--amber">&#x2B50;</div><div><h5>Verified reviews that build your reputation</h5><p>Transaction-verified reviews only. Reply publicly. Grow your profile and attract more cases.</p></div></li>
         </ul>
-        <div style="display:flex;gap:12px;flex-wrap:wrap;"><a href="#early-access" class="btn btn--navy">Apply for Beta Access</a><a href="mailto:hello@homeasy.co.uk" class="btn btn--outline">Talk to Us</a></div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;"><a href="#early-access" class="btn btn--navy">Apply for Beta Access</a><a href="mailto:admin@homeasy.co.uk" class="btn btn--outline">Talk to Us</a></div>
       </div>
       <div class="aud-panel">
-        <div class="panel-card"><div class="panel-card-hd"><div class="pdot pdot--green"></div><div class="panel-card-title">Your Dashboard</div></div><div class="panel-card-val">5 active cases</div><div class="panel-card-sub">Capacity: 20 / fee earner · Utilisation 25%</div><div class="panel-progress"><div class="panel-bar" style="width:25%"></div></div></div>
-        <div class="panel-card"><div class="panel-card-hd"><div class="pdot pdot--teal"></div><div class="panel-card-title">SLA Status</div></div><div class="panel-card-val" style="font-size:1.125rem;color:#34D399;">All on track</div><div class="panel-card-sub">3 cases in external wait · not on your clock</div><div class="panel-tag-row"><span class="panel-tag">2 awaiting lender</span><span class="panel-tag">1 awaiting searches</span></div></div>
-        <div class="panel-card"><div class="panel-card-hd"><div class="pdot pdot--amber"></div><div class="panel-card-title">AI Doc Checklist — 42 Birch Lane (Leasehold)</div></div><div class="panel-card-val" style="font-size:1rem;color:#FBBF24;">3 documents pending</div><div class="panel-card-sub">Lease, Management Pack, Ground Rent schedule</div><div class="panel-badge">✓ 9 of 12 documents verified</div></div>
+        <div class="panel-card"><div class="panel-card-hd"><div class="pdot pdot--green"></div><div class="panel-card-title">Your Dashboard</div></div><div class="panel-card-val">5 active cases</div><div class="panel-card-sub">Capacity: 20 / fee earner &middot; Utilisation 25%</div><div class="panel-progress"><div class="panel-bar" style="width:25%"></div></div></div>
+        <div class="panel-card"><div class="panel-card-hd"><div class="pdot pdot--teal"></div><div class="panel-card-title">SLA Status</div></div><div class="panel-card-val" style="font-size:1.125rem;color:#34D399;">All on track</div><div class="panel-card-sub">3 cases in external wait &middot; not on your clock</div><div class="panel-tag-row"><span class="panel-tag">2 awaiting lender</span><span class="panel-tag">1 awaiting searches</span></div></div>
+        <div class="panel-card"><div class="panel-card-hd"><div class="pdot pdot--amber"></div><div class="panel-card-title">AI Doc Checklist &mdash; 42 Birch Lane (Leasehold)</div></div><div class="panel-card-val" style="font-size:1rem;color:#FBBF24;">3 documents pending</div><div class="panel-card-sub">Lease, Management Pack, Ground Rent schedule</div><div class="panel-badge">&#x2713; 9 of 12 documents verified</div></div>
+        <p class="panel-note">* Representative illustration only</p>
       </div>
     </div>
   </div>
@@ -574,19 +414,20 @@
       <div class="aud-content">
         <span class="label label--amber">For Surveyors</span>
         <h2>Get discovered. Get booked. Get paid.</h2>
-        <p class="aud-intro">Your RICS-verified profile surfaces to the right buyers at exactly the right moment in their transaction. No cold outreach, no agency fees — just a direct pipeline of qualified survey bookings.</p>
+        <p class="aud-intro">Your RICS-verified profile surfaces to the right buyers at exactly the right moment in their transaction. No cold outreach, no agency fees &mdash; just a direct pipeline of qualified survey bookings.</p>
         <ul class="benefits">
-          <li class="benefit"><div class="benefit-icon bi--amber">🏅</div><div><h5>RICS-verified public profile</h5><p>Showcase your qualifications, coverage area, Level 2 and Level 3 availability, and response times.</p></div></li>
-          <li class="benefit"><div class="benefit-icon bi--teal">📅</div><div><h5>Integrated booking flow</h5><p>Buyers book directly via the platform. Calendar sync, automated reminders, no phone-tag.</p></div></li>
-          <li class="benefit"><div class="benefit-icon bi--green">💳</div><div><h5>Stripe Connect payouts</h5><p>Payment collected at booking. Funds sent directly to your account after survey delivery.</p></div></li>
-          <li class="benefit"><div class="benefit-icon bi--navy">🤖</div><div><h5>AI flag extraction from your reports</h5><p>Homeasy extracts key flags (damp, subsidence, roof condition) into plain English for buyers — your full report remains the authoritative document.</p></div></li>
+          <li class="benefit"><div class="benefit-icon bi--amber">&#x1F3C5;</div><div><h5>RICS-verified public profile</h5><p>Showcase your qualifications, coverage area, Level 2 and Level 3 availability, and response times.</p></div></li>
+          <li class="benefit"><div class="benefit-icon bi--teal">&#x1F4C5;</div><div><h5>Integrated booking flow</h5><p>Buyers book directly via the platform. Calendar sync, automated reminders, no phone-tag.</p></div></li>
+          <li class="benefit"><div class="benefit-icon bi--green">&#x1F4B3;</div><div><h5>Stripe Connect payouts</h5><p>Payment collected at booking. Funds sent directly to your account after survey delivery.</p></div></li>
+          <li class="benefit"><div class="benefit-icon bi--navy">&#x1F916;</div><div><h5>AI flag extraction from your reports</h5><p>Homeasy extracts key flags (damp, subsidence, roof condition) into plain English for buyers &mdash; your full report remains the authoritative document.</p></div></li>
         </ul>
         <a href="#early-access" class="btn btn--navy">Register as a Surveyor</a>
       </div>
       <div class="aud-panel">
-        <div class="panel-card"><div class="panel-card-hd"><div class="pdot pdot--green"></div><div class="panel-card-title">This Week's Bookings</div></div><div class="panel-card-val">4 surveys</div><div class="panel-card-sub">2 × Level 2 · 2 × Level 3 · £1,480 pending payout</div><div class="panel-badge">✓ RICS Verified Profile</div></div>
-        <div class="panel-card"><div class="panel-card-hd"><div class="pdot pdot--amber"></div><div class="panel-card-title">AI Summary — 14 Elm Road (Level 3)</div></div><div class="panel-card-val" style="font-size:.95rem;color:#FBBF24;">2 flags extracted</div><div class="panel-card-sub">Roof covering age · Damp in NW corner of cellar</div><div class="panel-tag-row"><span class="panel-tag">Shown to buyer in plain English</span><span class="panel-tag">Full PDF attached</span></div></div>
-        <div class="panel-card"><div class="panel-card-hd"><div class="pdot pdot--teal"></div><div class="panel-card-title">Profile Visibility</div></div><div class="panel-card-val" style="font-size:1rem;">SE London · Surrey · Kent</div><div class="panel-card-sub">Avg. response time: 2h · Rating: 4.8★</div></div>
+        <div class="panel-card"><div class="panel-card-hd"><div class="pdot pdot--green"></div><div class="panel-card-title">This Week's Bookings</div></div><div class="panel-card-val">4 surveys</div><div class="panel-card-sub">2 &times; Level 2 &middot; 2 &times; Level 3 &middot; pending payout</div><div class="panel-badge">&#x2713; RICS Verified Profile</div></div>
+        <div class="panel-card"><div class="panel-card-hd"><div class="pdot pdot--amber"></div><div class="panel-card-title">AI Summary &mdash; 14 Elm Road (Level 3)</div></div><div class="panel-card-val" style="font-size:.95rem;color:#FBBF24;">2 flags extracted</div><div class="panel-card-sub">Roof covering age &middot; Damp in NW corner of cellar</div><div class="panel-tag-row"><span class="panel-tag">Shown to buyer in plain English</span><span class="panel-tag">Full PDF attached</span></div></div>
+        <div class="panel-card"><div class="panel-card-hd"><div class="pdot pdot--teal"></div><div class="panel-card-title">Profile Visibility</div></div><div class="panel-card-val" style="font-size:1rem;">SE London &middot; Surrey &middot; Kent</div><div class="panel-card-sub">Avg. response time: 2h &middot; Rating: 4.8&#x2605;</div></div>
+        <p class="panel-note">* Representative illustration only</p>
       </div>
     </div>
   </div>
@@ -598,19 +439,20 @@
       <div class="aud-content">
         <span class="label label--navy">For Mortgage Lenders</span>
         <h2>Pre-verified income packs. Fewer false starts.</h2>
-        <p class="aud-intro">Every mortgage application that comes through Homeasy arrives with AI-extracted, professionally verified income documentation. Reduce rework, reduce manual processing, and receive structured data — not a pile of PDFs.</p>
+        <p class="aud-intro">Every mortgage application that comes through Homeasy arrives with AI-extracted, professionally verified income documentation. Reduce rework, reduce manual processing, and receive structured data &mdash; not a pile of PDFs.</p>
         <ul class="benefits">
-          <li class="benefit"><div class="benefit-icon bi--navy">📊</div><div><h5>Structured application data</h5><p>Income, employment, LTV, property details — extracted and validated before it reaches your underwriters.</p></div></li>
-          <li class="benefit"><div class="benefit-icon bi--teal">✅</div><div><h5>AI + human verification pipeline</h5><p>Textract OCR → Claude extraction → professional sign-off. Every document triple-checked before submission.</p></div></li>
-          <li class="benefit"><div class="benefit-icon bi--green">🏃</div><div><h5>Faster from DIP to offer</h5><p>Buyers arrive with documentation ready. No chasing for bank statements three weeks into the process.</p></div></li>
-          <li class="benefit"><div class="benefit-icon bi--amber">🔗</div><div><h5>Direct pipeline from qualified buyers</h5><p>Affordability-checked, credit-assessed applicants who have already committed to a transaction.</p></div></li>
+          <li class="benefit"><div class="benefit-icon bi--navy">&#x1F4CA;</div><div><h5>Structured application data</h5><p>Income, employment, LTV, property details &mdash; extracted and validated before it reaches your underwriters.</p></div></li>
+          <li class="benefit"><div class="benefit-icon bi--teal">&#x2705;</div><div><h5>AI + human verification pipeline</h5><p>Textract OCR &rarr; Claude extraction &rarr; professional sign-off. Every document triple-checked before submission.</p></div></li>
+          <li class="benefit"><div class="benefit-icon bi--green">&#x1F3C3;</div><div><h5>Faster from DIP to offer</h5><p>Buyers arrive with documentation ready. No chasing for bank statements three weeks into the process.</p></div></li>
+          <li class="benefit"><div class="benefit-icon bi--amber">&#x1F517;</div><div><h5>Direct pipeline from qualified buyers</h5><p>Affordability-checked, credit-assessed applicants who have already committed to a transaction.</p></div></li>
         </ul>
-        <a href="mailto:hello@homeasy.co.uk" class="btn btn--navy">Lender Partnerships</a>
+        <a href="mailto:admin@homeasy.co.uk" class="btn btn--navy">Lender Partnerships</a>
       </div>
       <div class="aud-panel">
-        <div class="panel-card"><div class="panel-card-hd"><div class="pdot pdot--green"></div><div class="panel-card-title">Application Pack — J. Okonkwo</div></div><div class="panel-card-val" style="font-size:1rem;color:#34D399;">Ready for underwriting</div><div class="panel-card-sub">£285,000 · LTV 75% · Freehold</div><div class="panel-tag-row"><span class="panel-tag">✓ ID verified (Onfido)</span><span class="panel-tag">✓ 3 payslips extracted</span><span class="panel-tag">✓ Bank statements verified</span></div></div>
-        <div class="panel-card"><div class="panel-card-hd"><div class="pdot pdot--teal"></div><div class="panel-card-title">Income Summary (AI extracted)</div></div><div class="panel-card-val">£67,400</div><div class="panel-card-sub">Base salary · Bonus £8,200 · Employer confirmed</div><div class="panel-badge">✓ Professional sign-off complete</div></div>
-        <div class="panel-card"><div class="panel-card-hd"><div class="pdot pdot--blue"></div><div class="panel-card-title">DIP Issued</div></div><div class="panel-card-val" style="font-size:1rem;">4.89% · 5yr Fix</div><div class="panel-card-sub">Decision in 4 minutes · Full offer issued day 12</div></div>
+        <div class="panel-card"><div class="panel-card-hd"><div class="pdot pdot--green"></div><div class="panel-card-title">Application Pack &mdash; J. Okonkwo</div></div><div class="panel-card-val" style="font-size:1rem;color:#34D399;">Ready for underwriting</div><div class="panel-card-sub">&pound;285,000 &middot; LTV 75% &middot; Freehold</div><div class="panel-tag-row"><span class="panel-tag">&#x2713; ID verified</span><span class="panel-tag">&#x2713; 3 payslips extracted</span><span class="panel-tag">&#x2713; Bank statements verified</span></div></div>
+        <div class="panel-card"><div class="panel-card-hd"><div class="pdot pdot--teal"></div><div class="panel-card-title">Income Summary (AI extracted)</div></div><div class="panel-card-val">&pound;67,400</div><div class="panel-card-sub">Base salary &middot; Bonus &pound;8,200 &middot; Employer confirmed</div><div class="panel-badge">&#x2713; Professional sign-off complete</div></div>
+        <div class="panel-card"><div class="panel-card-hd"><div class="pdot pdot--blue"></div><div class="panel-card-title">DIP Issued</div></div><div class="panel-card-val" style="font-size:1rem;">4.89% &middot; 5yr Fix</div><div class="panel-card-sub">Decision in 4 minutes &middot; Full offer issued day 12</div></div>
+        <p class="panel-note">* Representative illustration only</p>
       </div>
     </div>
   </div>
@@ -622,19 +464,20 @@
       <div class="aud-content">
         <span class="label label--teal">For Mortgage Brokers</span>
         <h2>Your clients complete faster. Your reputation wins.</h2>
-        <p class="aud-intro">Homeasy handles the conveyancing side so your clients don't stall after mortgage offer. Structured income data is already verified before it reaches you — and our FCA Appointed Representative framework keeps everything compliant.</p>
+        <p class="aud-intro">Homeasy handles the conveyancing side so your clients don't stall after mortgage offer. Structured income data is already verified before it reaches you &mdash; and our FCA Appointed Representative framework keeps everything compliant.</p>
         <ul class="benefits">
-          <li class="benefit"><div class="benefit-icon bi--teal">📁</div><div><h5>Pre-packaged, verified income data</h5><p>Clients arrive with documents extracted and signed off. No more re-requesting payslips at the last minute.</p></div></li>
-          <li class="benefit"><div class="benefit-icon bi--green">🔄</div><div><h5>One platform, offer to keys</h5><p>Your client's mortgage offer feeds directly into the transaction flow — solicitor, searches, and completion all connected.</p></div></li>
-          <li class="benefit"><div class="benefit-icon bi--navy">⚖️</div><div><h5>FCA AR framework (Primis/Openwork)</h5><p>Homeasy operates under an FCA Appointed Representative network. Compliant referrals, compliant commission structure.</p></div></li>
-          <li class="benefit"><div class="benefit-icon bi--amber">📣</div><div><h5>Referral programme</h5><p>Refer buyers who complete. Earn platform credit or fee-sharing through our transparent referral scheme.</p></div></li>
+          <li class="benefit"><div class="benefit-icon bi--teal">&#x1F4C1;</div><div><h5>Pre-packaged, verified income data</h5><p>Clients arrive with documents extracted and signed off. No more re-requesting payslips at the last minute.</p></div></li>
+          <li class="benefit"><div class="benefit-icon bi--green">&#x1F504;</div><div><h5>One platform, offer to keys</h5><p>Your client's mortgage offer feeds directly into the transaction flow &mdash; solicitor, searches, and completion all connected.</p></div></li>
+          <li class="benefit"><div class="benefit-icon bi--navy">&#x2696;&#xFE0F;</div><div><h5>FCA AR framework (Primis/Openwork)</h5><p>Homeasy operates under an FCA Appointed Representative network. Compliant referrals, compliant commission structure.</p></div></li>
+          <li class="benefit"><div class="benefit-icon bi--amber">&#x1F4E3;</div><div><h5>Referral programme</h5><p>Refer buyers who complete. Earn platform credit or fee-sharing through our transparent referral scheme.</p></div></li>
         </ul>
-        <a href="mailto:hello@homeasy.co.uk" class="btn btn--navy">Broker Partnerships</a>
+        <a href="mailto:admin@homeasy.co.uk" class="btn btn--navy">Broker Partnerships</a>
       </div>
       <div class="aud-panel">
-        <div class="panel-card"><div class="panel-card-hd"><div class="pdot pdot--teal"></div><div class="panel-card-title">Comparison Results — S. Patel, £340,000</div></div><div class="panel-card-val">5 products</div><div class="panel-card-sub">Top match: Halifax 4.79% 2yr fix · £1,742/mo</div><div class="panel-tag-row"><span class="panel-tag">Salary + bonus income</span><span class="panel-tag">LTV 72%</span><span class="panel-tag">First-time buyer</span></div></div>
-        <div class="panel-card"><div class="panel-card-hd"><div class="pdot pdot--green"></div><div class="panel-card-title">Income Pack Status</div></div><div class="panel-card-val" style="font-size:1rem;color:#34D399;">Pre-verified</div><div class="panel-tag-row"><span class="panel-tag">✓ ID</span><span class="panel-tag">✓ Payslips × 3</span><span class="panel-tag">✓ Bank statements × 3</span><span class="panel-tag">✓ P60</span></div></div>
-        <div class="panel-card"><div class="panel-card-hd"><div class="pdot pdot--blue"></div><div class="panel-card-title">Referral Earnings</div></div><div class="panel-card-val">£420</div><div class="panel-card-sub">3 completions this month · Next payout: 01 Apr</div></div>
+        <div class="panel-card"><div class="panel-card-hd"><div class="pdot pdot--teal"></div><div class="panel-card-title">Comparison Results &mdash; S. Patel, &pound;340,000</div></div><div class="panel-card-val">5 products</div><div class="panel-card-sub">Top match: Halifax 4.79% 2yr fix &middot; &pound;1,742/mo</div><div class="panel-tag-row"><span class="panel-tag">Salary + bonus income</span><span class="panel-tag">LTV 72%</span><span class="panel-tag">First-time buyer</span></div></div>
+        <div class="panel-card"><div class="panel-card-hd"><div class="pdot pdot--green"></div><div class="panel-card-title">Income Pack Status</div></div><div class="panel-card-val" style="font-size:1rem;color:#34D399;">Pre-verified</div><div class="panel-tag-row"><span class="panel-tag">&#x2713; ID</span><span class="panel-tag">&#x2713; Payslips &times; 3</span><span class="panel-tag">&#x2713; Bank statements &times; 3</span><span class="panel-tag">&#x2713; P60</span></div></div>
+        <div class="panel-card"><div class="panel-card-hd"><div class="pdot pdot--blue"></div><div class="panel-card-title">Referral Earnings</div></div><div class="panel-card-val">&pound;420</div><div class="panel-card-sub">3 completions this month &middot; Next payout: 01 Apr</div></div>
+        <p class="panel-note">* Representative illustration only</p>
       </div>
     </div>
   </div>
@@ -646,19 +489,20 @@
       <div class="aud-content">
         <span class="label label--amber">For Contractors</span>
         <h2>Find work where buyers already are</h2>
-        <p class="aud-intro">Every property transaction is followed by work that needs doing. Homeasy connects verified contractors with buyers and sellers at exactly the right moment — post-survey, post-offer, post-completion.</p>
+        <p class="aud-intro">Every property transaction is followed by work that needs doing. Homeasy connects verified contractors with buyers and sellers at exactly the right moment &mdash; post-survey, post-offer, post-completion.</p>
         <ul class="benefits">
-          <li class="benefit"><div class="benefit-icon bi--amber">🔧</div><div><h5>Matched to relevant transactions</h5><p>Survey flags a roof issue? You're surfaced to that buyer as a qualified roofing contractor in their area.</p></div></li>
-          <li class="benefit"><div class="benefit-icon bi--green">💳</div><div><h5>Platform-managed payments</h5><p>Quotes accepted on platform. Stripe Connect handles payment on job completion — no invoice chasing.</p></div></li>
-          <li class="benefit"><div class="benefit-icon bi--teal">⭐</div><div><h5>Build your verified profile</h5><p>Ratings from real transactions. Verified trade credentials. Build a reputation that generates repeat work.</p></div></li>
-          <li class="benefit"><div class="benefit-icon bi--navy">📍</div><div><h5>Local area coverage</h5><p>Set your postcode radius. Receive relevant job requests. No national agency, no commission cut.</p></div></li>
+          <li class="benefit"><div class="benefit-icon bi--amber">&#x1F527;</div><div><h5>Matched to relevant transactions</h5><p>Survey flags a roof issue? You're surfaced to that buyer as a qualified roofing contractor in their area.</p></div></li>
+          <li class="benefit"><div class="benefit-icon bi--green">&#x1F4B3;</div><div><h5>Platform-managed payments</h5><p>Quotes accepted on platform. Stripe Connect handles payment on job completion &mdash; no invoice chasing.</p></div></li>
+          <li class="benefit"><div class="benefit-icon bi--teal">&#x2B50;</div><div><h5>Build your verified profile</h5><p>Ratings from real transactions. Verified trade credentials. Build a reputation that generates repeat work.</p></div></li>
+          <li class="benefit"><div class="benefit-icon bi--navy">&#x1F4CD;</div><div><h5>Local area coverage</h5><p>Set your postcode radius. Receive relevant job requests. No national agency, no commission cut.</p></div></li>
         </ul>
         <a href="#early-access" class="btn btn--navy">Register Interest</a>
       </div>
       <div class="aud-panel">
-        <div class="panel-card"><div class="panel-card-hd"><div class="pdot pdot--amber"></div><div class="panel-card-title">New Job Request — SW12</div></div><div class="panel-card-val" style="font-size:1rem;">Roof repair — flagged in survey</div><div class="panel-card-sub">14 Palace Gardens · 3-bed semi · Access from loft hatch</div><div class="panel-tag-row"><span class="panel-tag">Roofing</span><span class="panel-tag">Est. £800–1,400</span></div></div>
-        <div class="panel-card"><div class="panel-card-hd"><div class="pdot pdot--green"></div><div class="panel-card-title">Completed Jobs</div></div><div class="panel-card-val">12</div><div class="panel-card-sub">£14,200 paid out · Rating: 4.9★</div><div class="panel-badge">✓ Verified Trader</div></div>
-        <div class="panel-card"><div class="panel-card-hd"><div class="pdot pdot--teal"></div><div class="panel-card-title">Coverage Area</div></div><div class="panel-card-val" style="font-size:1rem;">SW London · 15 mile radius</div><div class="panel-card-sub">3 active enquiries this week</div></div>
+        <div class="panel-card"><div class="panel-card-hd"><div class="pdot pdot--amber"></div><div class="panel-card-title">New Job Request &mdash; SW12</div></div><div class="panel-card-val" style="font-size:1rem;">Roof repair &mdash; flagged in survey</div><div class="panel-card-sub">14 Palace Gardens &middot; 3-bed semi &middot; Access from loft hatch</div><div class="panel-tag-row"><span class="panel-tag">Roofing</span><span class="panel-tag">Est. cost provided on platform</span></div></div>
+        <div class="panel-card"><div class="panel-card-hd"><div class="pdot pdot--green"></div><div class="panel-card-title">Completed Jobs</div></div><div class="panel-card-val">12</div><div class="panel-card-sub">Total paid out &middot; Rating: 4.9&#x2605;</div><div class="panel-badge">&#x2713; Verified Trader</div></div>
+        <div class="panel-card"><div class="panel-card-hd"><div class="pdot pdot--teal"></div><div class="panel-card-title">Coverage Area</div></div><div class="panel-card-val" style="font-size:1rem;">SW London &middot; 15 mile radius</div><div class="panel-card-sub">3 active enquiries this week</div></div>
+        <p class="panel-note">* Representative illustration only</p>
       </div>
     </div>
   </div>
@@ -669,32 +513,32 @@
     <div class="section-header">
       <span class="label label--white">For Investors</span>
       <h2>A large, broken market. A platform-native fix.</h2>
-      <p>1.2 million UK residential transactions per year. A 25% fall-through rate. No single platform owns the full journey — until now.</p>
+      <p>1.2 million UK residential transactions per year. A 25% fall-through rate. No single platform owns the full journey &mdash; until now.</p>
     </div>
     <div class="inv-grid">
-      <div class="inv-card"><div class="inv-icon">🏡</div><h4>The Market</h4><p>UK residential property: <span class="inv-highlight">~1.2M transactions/year</span>. Average transaction value £285,000. Total addressable market: billions in facilitation fees, mortgage commissions, and professional services.</p></div>
-      <div class="inv-card"><div class="inv-icon">⚡</div><h4>The Opportunity</h4><p>No platform connects all parties end-to-end. Buyers use one tool, solicitors another, lenders a third. <span class="inv-highlight">We are the connective tissue</span> — and we own the data and the relationships.</p></div>
-      <div class="inv-card"><div class="inv-icon">🤖</div><h4>The Moat</h4><p>AI-first from day one. Every step reviewed by Claude, verified by licensed professionals. <span class="inv-highlight">Network effects on both sides</span> — solicitors attract buyers, buyers attract solicitors. Hard to replicate once established.</p></div>
-      <div class="inv-card"><div class="inv-icon">📐</div><h4>Capital Efficiency</h4><p>Solo technical founder. AI-assisted build. <span class="inv-highlight">$5k AWS credits</span> cover infrastructure for 20–30 months. 20–24 week build timeline to beta. First revenue at month 9.</p></div>
-      <div class="inv-card"><div class="inv-icon">📈</div><h4>Conservative SOM</h4><p><span class="inv-highlight">200 solicitor firms × 1.5 transactions/month</span> = 300 transactions/month at steady state. At £299/mo subscription per firm, that's £59,800 MRR before mortgage commission.</p></div>
-      <div class="inv-card"><div class="inv-icon">🛡️</div><h4>Regulatory Clarity</h4><p>Marketplace/facilitator model — no legal advice, no lending decisions. FCA Appointed Representative route via Primis/Openwork network for mortgage referral commission. <span class="inv-highlight">SRA-compliant solicitor onboarding.</span></p></div>
+      <div class="inv-card"><div class="inv-icon">&#x1F3E1;</div><h4>The Market</h4><p>UK residential property: <span class="inv-highlight">~1.2M transactions/year</span>. Average transaction value &pound;285,000. Total addressable market: billions in facilitation fees, mortgage commissions, and professional services.</p></div>
+      <div class="inv-card"><div class="inv-icon">&#x26A1;</div><h4>The Opportunity</h4><p>No platform connects all parties end-to-end. Buyers use one tool, solicitors another, lenders a third. <span class="inv-highlight">We are the connective tissue</span> &mdash; and we own the data and the relationships.</p></div>
+      <div class="inv-card"><div class="inv-icon">&#x1F916;</div><h4>The Moat</h4><p>AI-first from day one. Every step reviewed by Claude, verified by licensed professionals. <span class="inv-highlight">Network effects on both sides</span> &mdash; solicitors attract buyers, buyers attract solicitors. Hard to replicate once established.</p></div>
+      <div class="inv-card"><div class="inv-icon">&#x1F4D0;</div><h4>Capital Efficiency</h4><p>Expert team, AI-assisted build. <span class="inv-highlight">AWS cloud infrastructure</span> supports rapid development. 20&ndash;24 week build timeline to beta. First revenue at month 9.</p></div>
+      <div class="inv-card"><div class="inv-icon">&#x1F4C8;</div><h4>Conservative SOM</h4><p><span class="inv-highlight">200 solicitor firms &times; 1.5 transactions/month</span> = 300 transactions/month at steady state. Subscription model plus mortgage commission creates compounding revenue.</p></div>
+      <div class="inv-card"><div class="inv-icon">&#x1F6E1;&#xFE0F;</div><h4>Regulatory Clarity</h4><p>Marketplace/facilitator model &mdash; no legal advice, no lending decisions. FCA Appointed Representative route via Primis/Openwork network for mortgage referral commission. <span class="inv-highlight">SRA-compliant solicitor onboarding.</span></p></div>
     </div>
     <div class="rev-box">
       <h3>Revenue Model</h3>
-      <p>Two revenue streams, sequenced to match the build and regulatory timeline.</p>
+      <p>Multiple revenue streams, sequenced to match the build and regulatory timeline.</p>
       <div class="rev-streams">
-        <div class="rev-stream"><h5>Subscription</h5><p>Monthly SaaS for solicitors and surveyors. First 5 cases free. Plans from £149/mo. Active from beta launch (month 9 of build).</p></div>
-        <div class="rev-stream"><h5>Mortgage Commission</h5><p>Referral commission on completed mortgage products. Active post-FCA AR (month 9–12). Requires CeMAP qualification and Primis/Openwork AR status.</p></div>
-        <div class="rev-stream"><h5>Referral &amp; Marketplace Fees</h5><p>Estate agent referral programme (£50–100/case). Surveyor booking fees. Contractor platform margin. Scales with transaction volume.</p></div>
+        <div class="rev-stream"><h5>Subscription</h5><p>Monthly SaaS for solicitors and surveyors. Introductory free access for early adopters, transitioning to paid plans as the platform scales.</p></div>
+        <div class="rev-stream"><h5>Mortgage Commission</h5><p>Referral commission on completed mortgage products via our FCA Appointed Representative arrangement. Active post-AR approval.</p></div>
+        <div class="rev-stream"><h5>Referral &amp; Marketplace Fees</h5><p>Estate agent referral programme. Surveyor booking fees. Contractor platform margin. Scales with transaction volume.</p></div>
       </div>
       <div class="timeline-row">
-        <div class="tl-phase"><div class="tl-phase-lbl">Months 1–6</div><div class="tl-phase-title">Build &amp; Comply</div><div class="tl-phase-sub">MVP build, FCA AR application, CeMAP study</div></div>
-        <div class="tl-phase"><div class="tl-phase-lbl">Months 6–9</div><div class="tl-phase-title">Beta Launch</div><div class="tl-phase-sub">First users, £0 revenue — transactions in progress</div></div>
+        <div class="tl-phase"><div class="tl-phase-lbl">Months 1&ndash;6</div><div class="tl-phase-title">Build &amp; Comply</div><div class="tl-phase-sub">MVP build, FCA AR application, compliance setup</div></div>
+        <div class="tl-phase"><div class="tl-phase-lbl">Months 6&ndash;9</div><div class="tl-phase-title">Beta Launch</div><div class="tl-phase-sub">First users, &pound;0 revenue &mdash; transactions in progress</div></div>
         <div class="tl-phase"><div class="tl-phase-lbl">Month 9+</div><div class="tl-phase-title">First Revenue</div><div class="tl-phase-sub">Subscriptions + first completions = commission</div></div>
-        <div class="tl-phase"><div class="tl-phase-lbl">Month 12+</div><div class="tl-phase-title">Scale</div><div class="tl-phase-sub">3–5 UK regions, surveyor + contractor marketplace</div></div>
+        <div class="tl-phase"><div class="tl-phase-lbl">Month 12+</div><div class="tl-phase-title">Scale</div><div class="tl-phase-sub">3&ndash;5 UK regions, surveyor + contractor marketplace</div></div>
       </div>
     </div>
-    <div style="text-align:center;margin-top:40px;"><a href="mailto:hello@homeasy.co.uk" class="btn btn--primary btn--lg">Investor Enquiries &rarr;</a></div>
+    <div style="text-align:center;margin-top:40px;"><a href="mailto:admin@homeasy.co.uk" class="btn btn--primary btn--lg">Investor Enquiries &rarr;</a></div>
   </div>
 </section>
 
@@ -703,20 +547,25 @@
     <div class="section-header">
       <span class="label label--navy">Join Our Team</span>
       <h2>Build the future of UK property</h2>
-      <p>We're a lean, AI-first team at the earliest and most exciting stage. If you know UK property, legal, or compliance — we want to talk.</p>
+      <p>We're a lean, AI-first team at the earliest and most exciting stage. If you know UK property, legal, or compliance &mdash; we want to talk.</p>
     </div>
     <div class="roles-grid">
-      <div class="role-card"><span class="label label--green" style="margin-bottom:12px;">Co-Founder</span><h4>Business Co-Founder</h4><p>The platform is being built. We need the other half of the founding team — someone who can own business development, solicitor relationships, lender conversations, and the commercial side of Homeasy.</p><div class="skills"><span class="skill">UK Property background</span><span class="skill">Business development</span><span class="skill">Legal or finance</span><span class="skill">Equity role</span></div></div>
-      <div class="role-card"><span class="label label--amber" style="margin-bottom:12px;">Advisor</span><h4>Compliance &amp; Regulatory Advisor</h4><p>FCA, SRA, GDPR, AML — we have the plans in place. We need someone who has navigated UK financial services or legal tech regulation and can review our approach and help us avoid expensive mistakes.</p><div class="skills"><span class="skill">FCA / SRA experience</span><span class="skill">FinTech or LegalTech</span><span class="skill">AML/KYC frameworks</span><span class="skill">Flexible engagement</span></div></div>
-      <div class="role-card"><span class="label label--teal" style="margin-bottom:12px;">Beta Partner</span><h4>Beta Solicitors</h4><p>We're looking for forward-thinking solicitors — particularly newly qualified or fresh graduates — to be our founding professional partners. First 5 cases completely free. Help shape the product.</p><div class="skills"><span class="skill">SRA qualified</span><span class="skill">Residential conveyancing</span><span class="skill">London/SE preferred</span><span class="skill">Free for first 5 cases</span></div></div>
+      <div class="role-card"><span class="label label--green" style="margin-bottom:12px;">Co-Founder</span><h4>Business Co-Founder</h4><p>The platform is being built. We need the other half of the founding team &mdash; someone who can own business development, solicitor relationships, lender conversations, and the commercial side of Homeasy.</p><div class="skills"><span class="skill">UK Property background</span><span class="skill">Business development</span><span class="skill">Legal or finance</span><span class="skill">Equity role</span></div></div>
+      <div class="role-card"><span class="label label--amber" style="margin-bottom:12px;">Advisor</span><h4>Compliance &amp; Regulatory Advisor</h4><p>FCA, SRA, GDPR, AML &mdash; we have the plans in place. We need someone who has navigated UK financial services or legal tech regulation and can review our approach and help us avoid expensive mistakes.</p><div class="skills"><span class="skill">FCA / SRA experience</span><span class="skill">FinTech or LegalTech</span><span class="skill">AML/KYC frameworks</span><span class="skill">Flexible engagement</span></div></div>
+      <div class="role-card"><span class="label label--teal" style="margin-bottom:12px;">Beta Partner</span><h4>Beta Solicitors</h4><p>We're looking for forward-thinking solicitors &mdash; particularly newly qualified or fresh graduates &mdash; to be our founding professional partners. Early access, no platform fees during beta. Help shape the product.</p><div class="skills"><span class="skill">SRA qualified</span><span class="skill">Residential conveyancing</span><span class="skill">London/SE preferred</span><span class="skill">Free beta access</span></div></div>
     </div>
-    <div class="founder-box">
-      <div><div class="founder-avatar">P</div></div>
-      <div class="founder-info">
-        <h3>Built by a solo technical founder</h3>
-        <p>Homeasy is being built by a solo developer combining Claude AI (via AWS Bedrock), the GSD spec-driven workflow, and a deeply researched product plan across 6 integrated modules. The platform is AI-first by design — not as an afterthought. Every step is reviewed by an LLM, verified by a licensed professional, and tracked end-to-end on a single platform.</p>
-        <p style="margin-top:10px;">Evenings and weekends for now. Looking for the right co-founder and advisors to build this properly. If you care about making UK home-buying less painful — let's talk.</p>
-        <div class="founder-badges"><span class="fbadge">Technical Founder</span><span class="fbadge">Under 30</span><span class="fbadge">AWS Activate</span><span class="fbadge">AI-assisted build</span><span class="fbadge">CeMAP in progress</span></div>
+    <div class="team-box">
+      <h3>Built by a team of qualified professionals</h3>
+      <p>Homeasy is being built by a multidisciplinary team spanning quantitative analysis, business development, security engineering, data analytics, and software development. The platform is AI-first by design &mdash; not as an afterthought. Every step is reviewed by an LLM, verified by a licensed professional, and tracked end-to-end on a single platform.</p>
+      <p style="margin-top:10px;">We're at the earliest and most exciting stage. If you care about making UK home-buying less painful &mdash; let's talk.</p>
+      <div class="team-badges">
+        <span class="tbadge">Quantitative Analysis</span>
+        <span class="tbadge">Business Development</span>
+        <span class="tbadge">Security Engineering</span>
+        <span class="tbadge">Data Analytics</span>
+        <span class="tbadge">Software Development</span>
+        <span class="tbadge">AWS Cloud Infrastructure</span>
+        <span class="tbadge">AI &amp; Machine Learning</span>
       </div>
     </div>
   </div>
@@ -725,13 +574,13 @@
 <section id="early-access" class="cta-banner">
   <div class="container">
     <h2>Be first when we launch</h2>
-    <p>We're onboarding our first buyers, solicitors, and professionals. Join the list — no spam, just launch updates.</p>
+    <p>We're onboarding our first buyers, solicitors, and professionals. Join the list &mdash; no spam, just launch updates.</p>
     <form class="cta-form" onsubmit="handleSubmit(event)">
       <input type="email" id="emailInput" placeholder="your@email.co.uk" required autocomplete="email">
       <button type="submit" class="btn btn--primary">Join Waiting List</button>
     </form>
-    <p class="cta-note">Are you a solicitor? Email <a href="mailto:hello@homeasy.co.uk" style="color:var(--teal);">hello@homeasy.co.uk</a> directly for beta access.</p>
-    <div id="submitMsg" style="display:none;margin-top:16px;color:#34D399;font-weight:600;">✓ You're on the list — we'll be in touch.</div>
+    <p class="cta-note">Are you a solicitor? Email <a href="mailto:admin@homeasy.co.uk" style="color:var(--teal);">admin@homeasy.co.uk</a> directly for beta access.</p>
+    <div id="submitMsg" style="display:none;margin-top:16px;color:#34D399;font-weight:600;">&#x2713; You're on the list &mdash; we'll be in touch.</div>
   </div>
 </section>
 
@@ -741,17 +590,17 @@
       <div class="footer-brand">
         <a href="#home" class="nav-logo" style="font-size:1.3rem;">
           <div class="nav-logo-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><polyline points="9,22 9,12 15,12 15,22" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          Home<span>easy</span>
+          <span style="color:#fff;">Home</span><span>easy</span>
         </a>
         <p>The UK's fastest property transaction platform. AI-reviewed. Professionally verified. GDPR compliant.</p>
       </div>
       <div class="footer-col"><h5>Platform</h5><ul><li><a href="#buyers">For Buyers</a></li><li><a href="#solicitors">For Solicitors</a></li><li><a href="#surveyors">For Surveyors</a></li><li><a href="#lenders">For Lenders</a></li><li><a href="#brokers">For Brokers</a></li><li><a href="#contractors">For Contractors</a></li></ul></div>
-      <div class="footer-col"><h5>Company</h5><ul><li><a href="#investors">Investors</a></li><li><a href="#team">Join the Team</a></li><li><a href="mailto:hello@homeasy.co.uk">Contact Us</a></li></ul></div>
-      <div class="footer-col"><h5>Legal</h5><ul><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Use</a></li><li><a href="#">Cookie Policy</a></li><li><a href="#">Compliance</a></li></ul></div>
+      <div class="footer-col"><h5>Company</h5><ul><li><a href="#investors">Investors</a></li><li><a href="#team">Join the Team</a></li><li><a href="mailto:admin@homeasy.co.uk">Contact Us</a></li></ul></div>
+      <div class="footer-col"><h5>Legal</h5><ul><li><a href="mailto:admin@homeasy.co.uk?subject=Privacy Policy Enquiry">Privacy Policy</a></li><li><a href="mailto:admin@homeasy.co.uk?subject=Terms of Use Enquiry">Terms of Use</a></li><li><a href="mailto:admin@homeasy.co.uk?subject=Cookie Policy Enquiry">Cookie Policy</a></li><li><a href="mailto:admin@homeasy.co.uk?subject=Compliance Enquiry">Compliance</a></li></ul></div>
     </div>
     <div class="footer-bottom">
       <p>&copy; 2026 Homeasy Ltd. Registered in England &amp; Wales.</p>
-      <div class="footer-legal"><a href="#">Privacy</a><a href="#">Terms</a><a href="mailto:hello@homeasy.co.uk">hello@homeasy.co.uk</a></div>
+      <div class="footer-legal"><a href="mailto:admin@homeasy.co.uk?subject=Privacy Policy Enquiry">Privacy</a><a href="mailto:admin@homeasy.co.uk?subject=Terms of Use Enquiry">Terms</a><a href="mailto:admin@homeasy.co.uk">admin@homeasy.co.uk</a></div>
     </div>
     <p class="footer-disclaimer">Homeasy is a property transaction platform and marketplace facilitator. Homeasy does not provide legal advice, mortgage advice, or financial advice. Solicitors and surveyors on the platform are independently regulated by the SRA and RICS respectively. Mortgage comparison is for information only. Homeasy operates under an FCA Appointed Representative arrangement for regulated mortgage referrals. All data stored in AWS eu-west-2 (London). ICO registered.</p>
   </div>
@@ -770,7 +619,7 @@
     document.getElementById('submitMsg').style.display = 'block';
     document.getElementById('emailInput').value = '';
     document.querySelector('.cta-form button').disabled = true;
-    document.querySelector('.cta-form button').textContent = 'Joined ✓';
+    document.querySelector('.cta-form button').textContent = 'Joined \u2713';
   }
 </script>
 </body>
