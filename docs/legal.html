@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Legal — Homeasy</title>
+  <meta name="description" content="Privacy Policy, Terms of Use, Cookie Policy and Compliance information for Homeasy Ltd.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    :root {
+      --navy: #0B2545; --navy-dark: #071A33; --teal: #0EA5B0;
+      --white: #FFFFFF; --off-white: #F8FAFC; --bg: #F1F5F9;
+      --border: #E2E8F0; --text: #0F172A; --text-mid: #334155;
+      --text-light: #64748B; --r: 12px; --rs: 8px;
+    }
+    body { font-family: 'Inter', -apple-system, sans-serif; color: var(--text); background: var(--white); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { text-decoration: none; color: inherit; }
+
+    /* NAV */
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(7,26,51,.96); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(255,255,255,.07); }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 66px; }
+    .nav-logo { font-size: 1.4rem; font-weight: 800; letter-spacing: -.03em; color: #fff; display: flex; align-items: center; gap: 9px; }
+    .nav-logo-icon { width: 30px; height: 30px; background: var(--teal); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
+    .nav-logo span { color: var(--teal); }
+    .nav-back { color: rgba(255,255,255,.7); font-size: .9rem; font-weight: 500; transition: color .15s; }
+    .nav-back:hover { color: #fff; }
+
+    /* HERO */
+    .legal-hero { background: linear-gradient(135deg, #071A33 0%, #0B2545 100%); padding: 120px 0 56px; }
+    .legal-hero h1 { color: #fff; font-size: clamp(1.75rem, 3vw, 2.5rem); font-weight: 800; margin-bottom: 10px; }
+    .legal-hero p { color: rgba(255,255,255,.55); font-size: .95rem; }
+
+    /* LAYOUT */
+    .legal-layout { display: grid; grid-template-columns: 220px 1fr; gap: 48px; max-width: 1100px; margin: 0 auto; padding: 56px 24px 96px; align-items: start; }
+    .legal-nav { position: sticky; top: 86px; }
+    .legal-nav ul { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+    .legal-nav a { display: block; padding: 9px 14px; border-radius: var(--rs); font-size: .875rem; font-weight: 500; color: var(--text-light); transition: all .15s; }
+    .legal-nav a:hover, .legal-nav a.active { background: var(--bg); color: var(--navy); }
+    .legal-nav-label { font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--text-light); margin-bottom: 8px; padding: 0 14px; }
+
+    /* CONTENT */
+    .legal-content { min-width: 0; }
+    .legal-section { margin-bottom: 72px; padding-top: 8px; }
+    .legal-section:last-child { margin-bottom: 0; }
+    .section-label { display: inline-block; font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 4px 12px; border-radius: 100px; background: rgba(14,165,176,.12); color: #0E7490; margin-bottom: 14px; }
+    .legal-section h2 { font-size: 1.625rem; font-weight: 700; margin-bottom: 8px; letter-spacing: -.02em; }
+    .legal-section .updated { font-size: .8rem; color: var(--text-light); margin-bottom: 28px; }
+    .legal-section h3 { font-size: 1.0625rem; font-weight: 600; margin: 28px 0 10px; }
+    .legal-section p { color: var(--text-mid); font-size: .9375rem; margin-bottom: 14px; line-height: 1.75; }
+    .legal-section ul { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; padding-left: 0; }
+    .legal-section ul li { color: var(--text-mid); font-size: .9375rem; padding-left: 20px; position: relative; line-height: 1.7; }
+    .legal-section ul li::before { content: '–'; position: absolute; left: 0; color: var(--teal); font-weight: 700; }
+    .legal-section a { color: var(--teal); }
+    .legal-section a:hover { text-decoration: underline; }
+    .divider { border: none; border-top: 1px solid var(--border); margin: 56px 0; }
+    .highlight-box { background: var(--bg); border: 1px solid var(--border); border-radius: var(--r); padding: 20px 24px; margin-bottom: 20px; }
+    .highlight-box p { margin-bottom: 0; }
+
+    /* FOOTER */
+    .legal-footer { background: var(--navy-dark); padding: 36px 0; text-align: center; }
+    .legal-footer p { font-size: .825rem; color: rgba(255,255,255,.4); }
+    .legal-footer a { color: var(--teal); }
+
+    @media (max-width: 768px) {
+      .legal-layout { grid-template-columns: 1fr; }
+      .legal-nav { position: static; display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <div class="nav-logo-icon">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
+          <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <polyline points="9,22 9,12 15,12 15,22" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <span style="color:#fff;">Home</span><span>easy</span>
+    </a>
+    <a href="/" class="nav-back">&larr; Back to homeasy.co.uk</a>
+  </div>
+</nav>
+
+<div class="legal-hero">
+  <div style="max-width:1100px;margin:0 auto;padding:0 24px;">
+    <h1>Legal Information</h1>
+    <p>Privacy Policy &middot; Terms of Use &middot; Cookie Policy &middot; Compliance</p>
+  </div>
+</div>
+
+<div class="legal-layout">
+  <aside class="legal-nav">
+    <div class="legal-nav-label">On this page</div>
+    <ul>
+      <li><a href="#privacy">Privacy Policy</a></li>
+      <li><a href="#terms">Terms of Use</a></li>
+      <li><a href="#cookies">Cookie Policy</a></li>
+      <li><a href="#compliance">Compliance</a></li>
+    </ul>
+  </aside>
+
+  <div class="legal-content">
+
+    <!-- PRIVACY POLICY -->
+    <section class="legal-section" id="privacy">
+      <span class="section-label">Privacy Policy</span>
+      <h2>Privacy Policy</h2>
+      <p class="updated">Last updated: March 2026</p>
+
+      <div class="highlight-box">
+        <p>Homeasy Ltd is committed to protecting your personal data in accordance with the UK General Data Protection Regulation (UK GDPR) and the Data Protection Act 2018. This policy explains how we collect, use, and protect your information.</p>
+      </div>
+
+      <h3>1. Who We Are</h3>
+      <p>Homeasy Ltd is a company registered in England and Wales. We operate a property transaction platform at homeasy.co.uk. For data protection enquiries, contact us at <a href="mailto:admin@homeasy.co.uk">admin@homeasy.co.uk</a>.</p>
+
+      <h3>2. Data We Collect</h3>
+      <p>We may collect and process the following categories of personal data:</p>
+      <ul>
+        <li>Identity data: name, date of birth, government-issued ID (for KYC/AML purposes)</li>
+        <li>Contact data: email address, phone number, postal address</li>
+        <li>Financial data: income information, mortgage application details, payment records</li>
+        <li>Transaction data: property details, case status, document uploads</li>
+        <li>Technical data: IP address, browser type, device identifiers, usage data</li>
+        <li>Communications: emails, messages sent through the platform</li>
+      </ul>
+
+      <h3>3. How We Use Your Data</h3>
+      <p>We use your personal data to:</p>
+      <ul>
+        <li>Provide and operate the Homeasy platform and facilitate property transactions</li>
+        <li>Verify your identity and comply with Anti-Money Laundering (AML) obligations</li>
+        <li>Connect you with solicitors, surveyors, lenders, and other professionals</li>
+        <li>Process payments and manage billing</li>
+        <li>Send transactional communications (case updates, reminders, alerts)</li>
+        <li>Improve our services and conduct analytics</li>
+        <li>Comply with legal and regulatory obligations</li>
+      </ul>
+
+      <h3>4. Legal Basis for Processing</h3>
+      <p>We process your data on the following legal bases under UK GDPR:</p>
+      <ul>
+        <li><strong>Contract performance</strong> &mdash; processing necessary to provide our services</li>
+        <li><strong>Legal obligation</strong> &mdash; AML, KYC, and regulatory compliance requirements</li>
+        <li><strong>Legitimate interests</strong> &mdash; fraud prevention, platform security, service improvement</li>
+        <li><strong>Consent</strong> &mdash; marketing communications (where applicable)</li>
+      </ul>
+
+      <h3>5. Data Retention</h3>
+      <p>We retain personal data for as long as necessary to provide our services and comply with legal obligations. AML and transaction records are retained for 6 years post-completion in accordance with the Money Laundering Regulations 2017. You may request erasure of your data subject to our legal retention obligations.</p>
+
+      <h3>6. Data Storage and Security</h3>
+      <p>All data is stored on AWS infrastructure in the eu-west-2 (London) region, ensuring UK data residency. We apply encryption at rest and in transit, access controls, and regular security reviews. We are registered with the Information Commissioner's Office (ICO).</p>
+
+      <h3>7. Third-Party Sharing</h3>
+      <p>We share your data only where necessary with:</p>
+      <ul>
+        <li>Solicitors, surveyors, and lenders involved in your transaction (with your consent)</li>
+        <li>Identity verification providers (Onfido or equivalent) for KYC purposes</li>
+        <li>Payment processors (Stripe) for billing and payouts</li>
+        <li>AWS for cloud infrastructure and document storage</li>
+        <li>Regulatory bodies where legally required</li>
+      </ul>
+      <p>We do not sell your personal data to third parties.</p>
+
+      <h3>8. Your Rights</h3>
+      <p>Under UK GDPR, you have the right to: access your data, correct inaccurate data, request erasure (subject to legal obligations), object to processing, data portability, and to withdraw consent. To exercise any of these rights, contact <a href="mailto:admin@homeasy.co.uk">admin@homeasy.co.uk</a>.</p>
+
+      <h3>9. Changes to This Policy</h3>
+      <p>We may update this policy as the platform evolves. Material changes will be communicated via email or a notice on the platform. Continued use of the platform constitutes acceptance of the updated policy.</p>
+
+      <h3>10. Contact</h3>
+      <p>For any privacy-related queries: <a href="mailto:admin@homeasy.co.uk">admin@homeasy.co.uk</a></p>
+    </section>
+
+    <hr class="divider">
+
+    <!-- TERMS OF USE -->
+    <section class="legal-section" id="terms">
+      <span class="section-label">Terms of Use</span>
+      <h2>Terms of Use</h2>
+      <p class="updated">Last updated: March 2026</p>
+
+      <div class="highlight-box">
+        <p>By accessing or using the Homeasy platform, you agree to be bound by these Terms of Use. If you do not agree, please do not use the platform. These terms apply to all users including buyers, sellers, solicitors, surveyors, lenders, brokers, and contractors.</p>
+      </div>
+
+      <h3>1. About Homeasy</h3>
+      <p>Homeasy Ltd operates a property transaction marketplace and facilitation platform. Homeasy is not a solicitor, mortgage adviser, lender, surveyor, or estate agent. We connect parties and facilitate transactions but do not provide legal, financial, or professional advice.</p>
+
+      <h3>2. Eligibility</h3>
+      <p>You must be at least 18 years of age and a UK resident to use the platform. Professionals (solicitors, surveyors) must hold valid SRA or RICS registration respectively. By registering, you confirm you meet these requirements.</p>
+
+      <h3>3. Platform Use</h3>
+      <p>You agree to:</p>
+      <ul>
+        <li>Provide accurate and complete information when registering and during transactions</li>
+        <li>Keep your account credentials secure and not share them with third parties</li>
+        <li>Use the platform only for lawful purposes related to UK property transactions</li>
+        <li>Not attempt to reverse-engineer, scrape, or misuse any part of the platform</li>
+        <li>Notify us immediately of any unauthorised access to your account</li>
+      </ul>
+
+      <h3>4. Professional Services</h3>
+      <p>Solicitors and surveyors on the platform operate independently and are regulated by the SRA and RICS respectively. Homeasy is a marketplace facilitator and does not supervise, endorse, or guarantee the advice or services of any professional on the platform. Any legal advice or professional services are provided directly by the relevant regulated professional.</p>
+
+      <h3>5. Mortgage Comparison</h3>
+      <p>Mortgage comparison information on the platform is provided for indicative purposes only and does not constitute financial advice. Homeasy operates under an FCA Appointed Representative arrangement for regulated mortgage referral activities. You should seek independent financial advice before making any mortgage commitment.</p>
+
+      <h3>6. Intellectual Property</h3>
+      <p>All content, software, trademarks, and materials on the Homeasy platform are owned by or licensed to Homeasy Ltd. You may not reproduce, distribute, or create derivative works without our express written consent. The Homeasy name and logo are registered trademarks.</p>
+
+      <h3>7. Limitation of Liability</h3>
+      <p>To the maximum extent permitted by law, Homeasy Ltd shall not be liable for any indirect, incidental, or consequential loss arising from your use of the platform. We do not guarantee uninterrupted or error-free service. Our total liability to you shall not exceed the fees paid by you to Homeasy in the 12 months preceding the claim.</p>
+
+      <h3>8. Termination</h3>
+      <p>We reserve the right to suspend or terminate accounts that violate these terms, engage in fraudulent activity, or breach applicable laws or professional regulations. You may close your account at any time by contacting <a href="mailto:admin@homeasy.co.uk">admin@homeasy.co.uk</a>.</p>
+
+      <h3>9. Governing Law</h3>
+      <p>These terms are governed by the laws of England and Wales. Any disputes shall be subject to the exclusive jurisdiction of the courts of England and Wales.</p>
+
+      <h3>10. Contact</h3>
+      <p>For terms-related queries: <a href="mailto:admin@homeasy.co.uk">admin@homeasy.co.uk</a></p>
+    </section>
+
+    <hr class="divider">
+
+    <!-- COOKIE POLICY -->
+    <section class="legal-section" id="cookies">
+      <span class="section-label">Cookie Policy</span>
+      <h2>Cookie Policy</h2>
+      <p class="updated">Last updated: March 2026</p>
+
+      <div class="highlight-box">
+        <p>This policy explains how Homeasy Ltd uses cookies and similar technologies on homeasy.co.uk. By using our website, you consent to the use of cookies in accordance with this policy.</p>
+      </div>
+
+      <h3>1. What Are Cookies</h3>
+      <p>Cookies are small text files placed on your device when you visit a website. They allow the website to recognise your device and remember information about your visit. We also use similar technologies such as local storage and session storage.</p>
+
+      <h3>2. Cookies We Use</h3>
+
+      <h3>Strictly Necessary Cookies</h3>
+      <p>These cookies are essential for the platform to function. They cannot be disabled. They include:</p>
+      <ul>
+        <li>Session cookies for authentication and security</li>
+        <li>Load balancing cookies to distribute traffic across our servers</li>
+        <li>CSRF protection tokens to prevent cross-site request forgery</li>
+      </ul>
+
+      <h3>Analytics Cookies</h3>
+      <p>We use analytics tools to understand how users interact with the platform. This helps us improve performance and usability. Analytics data is anonymised and not used for advertising. We use self-hosted analytics infrastructure where possible to keep data within the UK.</p>
+
+      <h3>Functional Cookies</h3>
+      <p>These cookies remember your preferences (such as language or display settings) to improve your experience on return visits.</p>
+
+      <h3>3. Third-Party Cookies</h3>
+      <p>Some third-party services we integrate may set their own cookies, including:</p>
+      <ul>
+        <li>Stripe &mdash; for payment processing</li>
+        <li>Identity verification providers &mdash; for KYC checks</li>
+      </ul>
+      <p>We do not use advertising or tracking cookies, and we do not share cookie data with advertising networks.</p>
+
+      <h3>4. Managing Cookies</h3>
+      <p>You can control and delete cookies through your browser settings. Note that disabling strictly necessary cookies may prevent parts of the platform from functioning correctly. Most browsers allow you to refuse cookies by adjusting settings; please refer to your browser's help documentation for instructions.</p>
+
+      <h3>5. Changes to This Policy</h3>
+      <p>We may update this Cookie Policy as our technology and legal obligations evolve. We will notify users of material changes via the platform or by email.</p>
+
+      <h3>6. Contact</h3>
+      <p>For cookie-related queries: <a href="mailto:admin@homeasy.co.uk">admin@homeasy.co.uk</a></p>
+    </section>
+
+    <hr class="divider">
+
+    <!-- COMPLIANCE -->
+    <section class="legal-section" id="compliance">
+      <span class="section-label">Compliance</span>
+      <h2>Compliance</h2>
+      <p class="updated">Last updated: March 2026</p>
+
+      <div class="highlight-box">
+        <p>Homeasy Ltd is committed to operating in full compliance with applicable UK laws and regulations. This page summarises our key regulatory commitments.</p>
+      </div>
+
+      <h3>Data Protection (GDPR)</h3>
+      <p>Homeasy Ltd is registered with the Information Commissioner's Office (ICO) as a data controller. We process personal data in accordance with the UK General Data Protection Regulation (UK GDPR) and the Data Protection Act 2018. All data is stored on UK-based infrastructure (AWS eu-west-2, London). See our <a href="#privacy">Privacy Policy</a> for full details.</p>
+
+      <h3>Anti-Money Laundering (AML)</h3>
+      <p>Homeasy operates as a property marketplace and is subject to the Money Laundering, Terrorist Financing and Transfer of Funds (Information on the Payer) Regulations 2017. We conduct identity verification (KYC) on all users via regulated third-party providers and maintain records in accordance with our legal obligations. Suspicious activity is reported to the National Crime Agency (NCA) where required.</p>
+
+      <h3>Financial Services (FCA)</h3>
+      <p>Homeasy Ltd operates under an FCA Appointed Representative arrangement for regulated mortgage referral activities. Mortgage comparison information provided on the platform is for indicative purposes only and does not constitute financial advice. Homeasy does not hold its own FCA authorisation for advising on or arranging regulated mortgage contracts &mdash; this is provided through our principal firm relationship. For regulated mortgage advice, you should seek guidance from a qualified mortgage adviser.</p>
+
+      <h3>Legal Services (SRA)</h3>
+      <p>Homeasy is a technology platform and marketplace facilitator and is not a regulated law firm. Homeasy does not provide legal advice. All legal services on the platform are provided by independently regulated solicitor firms authorised and regulated by the Solicitors Regulation Authority (SRA). Homeasy does not supervise or take responsibility for legal advice given by solicitors on the platform.</p>
+
+      <h3>Surveying (RICS)</h3>
+      <p>Surveyors listed on the Homeasy platform are verified as members of the Royal Institution of Chartered Surveyors (RICS). Survey reports are prepared and owned by the relevant RICS-qualified professional. Homeasy does not endorse or guarantee the accuracy of survey reports.</p>
+
+      <h3>Consumer Protection</h3>
+      <p>We are committed to fair and transparent practices in accordance with the Consumer Rights Act 2015 and the Consumer Contracts (Information, Cancellation and Additional Charges) Regulations 2013. Our platform fees and professional service fees are clearly disclosed before any commitment is made.</p>
+
+      <h3>Complaints</h3>
+      <p>If you have a complaint about our platform or services, please contact us in the first instance at <a href="mailto:admin@homeasy.co.uk">admin@homeasy.co.uk</a>. We will acknowledge your complaint within 5 business days and aim to resolve it within 28 days. If your complaint relates to a regulated professional on the platform, you may also contact the relevant regulatory body (SRA, RICS, or FCA) directly.</p>
+
+      <h3>Contact</h3>
+      <p>For compliance-related queries: <a href="mailto:admin@homeasy.co.uk">admin@homeasy.co.uk</a><br>
+      Homeasy Ltd, Registered in England and Wales.</p>
+    </section>
+
+  </div>
+</div>
+
+<footer class="legal-footer">
+  <p>&copy; 2026 Homeasy Ltd. Registered in England &amp; Wales. &nbsp;&middot;&nbsp; <a href="/">Back to homeasy.co.uk</a> &nbsp;&middot;&nbsp; <a href="mailto:admin@homeasy.co.uk">admin@homeasy.co.uk</a></p>
+</footer>
+
+<script>
+  // Highlight active nav item on scroll
+  const sections = document.querySelectorAll('.legal-section');
+  const navLinks = document.querySelectorAll('.legal-nav a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
+    navLinks.forEach(a => { a.classList.toggle('active', a.getAttribute('href') === '#' + current); });
+  });
+</script>
+</body>
+</html>
